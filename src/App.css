@@ -1,38 +1,277 @@
-.App {
-  text-align: center;
+/*---Fuentes---*/
+p.light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
+p{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1, h2{
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+
+
+
+#image-wrapper {
+  position: relative;
+  width: 500px; /* Ajusta al tamaño de tu imagen */
+  height: 330px; /* Ajusta al tamaño de tu imagen */
+}
+
+#cover-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black; /* Capa negra */
+}
+
+#background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
+
+.botonfoto{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  border-radius: 50%;
+  background-color: #f0ce00;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  bottom: 25px;
+  align-items: center;
+}  
+
+body{
+  background-color: black;
+}
+
+.containersteps{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+  
+img.face-recog{
+  position: absolute;
+  top: 5%;
+  left: 0%;
+  width: 100%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.material-icons {
+  font-size: 30px;
+}
+
+h1{
+  font-size: 3em;
+  line-height: 1em;
+}
+
+h1, h2, p{
+  color:#f0ce00;
+  text-align: center;
+  animation: lights 5s 750ms linear infinite;
+}
+
+.popup-container button{
+  background-color: #f0ce00;
+  color:#000000;
+  border: 2px solid #f0ce00;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  margin: 5% 0;
+  top: 0px;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.popup-container button:hover{
+  border: 2px solid #f0ce00;
+  background-color:#000000;
+  cursor: pointer;
+  color:#f0ce00;
+  top: -10px;
+  box-shadow: 0px 10px 25px #ffdb0069;
+}
+
+button.next{
+  background-color: #f0ce00;
+  color:#000000;
+  border: 2px solid #f0ce00;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 10% auto;
+  position: absolute;
+  bottom: 0px;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+button.next:hover{
+  border: 2px solid #f0ce00;
+  background-color:#000000;
+  cursor: pointer;
+  color:#f0ce00;
+  margin: 12% auto;
+  box-shadow: 0px 10px 25px #ffdb0069;
+}
+
+
+input{
+  height: 35px;
+  border: none;
+  border-radius: 20px;
+  padding: 0px 10px;
+  width: 200px;
+}
+
+
+header{ 
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header img{
+  width: '300px';
+  height: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+
+/*---Componente Popup---*/
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-container {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+
+
+@keyframes lights {
+  0% {
+    color: #f0ce00;
+    text-shadow:
+    0 0 1em hsla(59, 100%, 70%, 0.5),
+    0 0 0.125em hsla(65, 90%, 88%, 0.5),
+    -0.25em -0.125em 0.125em hsla(61, 100%, 71%, 0.2),
+    0.25em 0.125em 0.125em hsla(61, 100%, 58%, 0.4);
   }
-  to {
-    transform: rotate(360deg);
+  
+  30% { 
+    color: #ffdd00;
+    text-shadow:
+      0 0 1em hsla(62, 100%, 55%, 0.5),
+      0 0 0.125em hsla(58, 88%, 44%, 0.5),
+      -0.5em -0.125em 0.25em hsla(56, 100%, 60%, 0.2),
+      0.5em 0.125em 0.25em hsla(55, 100%, 63%, 0.4);
+  }
+  
+  40% { 
+    color: #f0ce00;
+    text-shadow:
+      0 0 1em #f0ce00,
+      0 0 0.125em hsla(65, 90%, 88%, 0.5),
+      -0.25em -0.125em 0.125em hsla(61, 100%, 71%, 0.2),
+      0.25em 0.125em 0.125em hsla(61, 100%, 58%, 0.4);
+  }
+  
+  70% {
+    color: #ffea6494;
+    text-shadow:
+      0 0 1em hsla(55, 100%, 58%, 0.5),
+      0 0 0.125em hsla(61, 100%, 50%, 0.5),
+      0.5em -0.125em 0.25em hsla(60, 80%, 41%, 0.2),
+      -0.5em 0.125em 0.25em hsla(60, 100%, 51%, 0.4);
+  }
+  
+  100% {
+    color:  #f0ce00;
+    text-shadow:
+      0 0 1em #978510,
+      0 0 0.125em #f9df34,
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      -1em 0.125em 0.5em hsla(63, 89%, 10%, 0);
+  }
+  
+}
+
+
+@media screen and (max-width:768px) {
+  header img{ 
+    width: 180px;
   }
 }
