@@ -171,12 +171,13 @@ button.next:hover{
 }
 
 
-input{
+input, select.input-field{
   height: 35px;
   border: none;
   border-radius: 20px;
   padding: 0px 10px;
-  width: 200px;
+  min-width: 200px!important;
+  margin-bottom: 10px;
 }
 
 
