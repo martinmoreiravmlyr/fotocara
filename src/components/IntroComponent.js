@@ -3,8 +3,23 @@ import React from 'react';
 function IntroComponent({ nextStep }) {
   return (
     <div className='containersteps'>
-      <h1 className='poppins-bold'>¿Ya te probaste la nueva camiseta?</h1>
-      <button onClick={nextStep} className="next poppins-light" >Comenzar</button>
+      <div className='contenedorstep'>
+        <h1>¿Querés conocer la nueva camiseta de PEÑAROL?</h1>
+        <button onClick={nextStep} className="next poppins-light" >Comenzar</button>
+
+        <div className='sponsorscontainer'>
+          <p>Sponsors</p>
+          <div className='sponsors'>
+            <img src="/images/logos-cap/logos-cap-puma.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-antel.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-bbva.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-sarubi.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-nuñez.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-medica.png" alt="Escudo de Peñarol" />
+            <img src="/images/logos-cap/logos-cap-rexona.png" alt="Escudo de Peñarol" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

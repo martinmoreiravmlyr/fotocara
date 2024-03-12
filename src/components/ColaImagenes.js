@@ -24,7 +24,7 @@ function ColaImagenes({ nextStep }) {
         console.error("Error al obtener la posición en la cola", error);
         setPopupContent({
           title: 'Error',
-          text: 'No se pudo obtener la posición en la colaaaa',
+          text: 'No se pudo obtener la posición en la cola',
         });
         setShowPopup(true);
       }
@@ -34,11 +34,16 @@ function ColaImagenes({ nextStep }) {
   }, [nextStep]);
 
   return showPopup ? (
-    <Popup
-      title={popupContent.title}
-      text={popupContent.text}
-      onClose={() => setShowPopup(false)}
-    />
+    <>
+      <Popup
+        title={popupContent.title}
+        text={popupContent.text}
+        onClose={() => setShowPopup(false)}
+      />
+      
+      <button onClick={nextStep} className="continuar" >Continuar</button>
+    </>
+
   ) : null;
 }
 

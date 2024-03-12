@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import ScratchCard from './components/ScratchCard'; 
 import CameraComponent from './components/CameraComponent';
+import LogoLoader from './components/LogoLoader';
 import ColaImagenes from './components/ColaImagenes';
 import ImageShow from './components/ImageShow';
 import IntroComponent from './components/IntroComponent';
@@ -11,8 +11,14 @@ import HeaderComponent from './components/HeaderComponent';
 
 function App() {
   const [type, setType] = useState('intro'); // Comienza con el componente de introducción
+  const [showCamera, setShowCamera] = useState(false); // Nuevo estado para controlar la visibilidad de CameraComponent
+  const [loading, setLoading] = useState(false); // Nuevo estado para controlar la visibilidad de LogoLoader
+  const [capturedImage, setCapturedImage] = useState(null);
+
+
 
   const nextStep = () => {
+    setLoading(true); // Muestra el loader al iniciar la transición
     setType((currentType) => {
       switch (currentType) {
         case 'intro':
@@ -24,26 +30,37 @@ function App() {
         case 'step2':
           return 'step3';
         default:
-          return 'intro'; // Vuelve al inicio después del último paso
+          setLoading(false); // Asegúrate de ocultar el loader si vuelves al inicio
+          return 'intro';
       }
     });
+    // Simula la carga de datos o una transición, luego oculta el loader
+    setTimeout(() => setLoading(false), 1000); // Este timeout es solo para simular una carga
   };
+
+  const toggleCamera = () => setShowCamera(!showCamera); // Función para mostrar/ocultar la cámara
 
   return (
     <div>
-      <HeaderComponent /> 
-      <div> 
+      <HeaderComponent />
+      {loading && <LogoLoader />}
+      <div>
         {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-        {type === 'socio' && <SocioComponent nextStep={nextStep} />}
-        {type === 'step1' && <CameraComponent nextStep={nextStep} />}
-        {type === 'step2' && (
-          <>
-            <ColaImagenes nextStep={nextStep} />
-            <ScratchCard imageUrl="/images/cenashow.jpeg" />
-          </>
+        {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} />}
+        {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} />}
+        {type === 'step1' && (
+        <>
+          <ColaImagenes nextStep={nextStep}/>
+        </>
         )}
-        {type === 'step3' && <div><ImageShow /><button onClick={() => setType('intro')}>Restart</button></div>}
-        {type === 'error' && <div className="error">Something Went Wrong.<button onClick={() => setType('intro')}>Restart</button></div>}
+        {type === 'step2' && <div>
+          <ImageShow setType={setType}/>
+        </div>}
+        {type === 'error' && 
+          <div className="error">
+            <h1>Algo salio mal.</h1>
+            <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
+          </div>}
       </div>
     </div>
   );
