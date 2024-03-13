@@ -14,6 +14,7 @@ function App() {
   const [showCamera, setShowCamera] = useState(false); // Nuevo estado para controlar la visibilidad de CameraComponent
   const [loading, setLoading] = useState(false); // Nuevo estado para controlar la visibilidad de LogoLoader
   const [capturedImage, setCapturedImage] = useState(null);
+  const [lastAction, setLastAction] = useState('');
 
 
 
@@ -46,8 +47,9 @@ function App() {
       {loading && <LogoLoader />}
       <div>
         {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-        {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} />}
-        {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} />}
+        {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
+        {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
+
         {type === 'step1' && (
         <>
           <ColaImagenes nextStep={nextStep}/>

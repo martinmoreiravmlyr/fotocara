@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const CameraComponent = ({ toggleCamera, setCapturedImage }) => {
+const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -24,6 +24,8 @@ const CameraComponent = ({ toggleCamera, setCapturedImage }) => {
 
     const imageSrc = canvas.toDataURL('image/png');
     setCapturedImage(imageSrc); 
+
+    setLastAction('camera');
 
     setTimeout(() => {
       toggleCamera();

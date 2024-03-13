@@ -26,6 +26,13 @@ input{
   color: #f0ce00;
 }
 
+/* Para Chrome, Safari, Edge */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input:focus {
   outline: none;
 }
@@ -88,7 +95,7 @@ h1{
 }
 
 input::placeholder, label {
-  color: #a1a1a1;
+  color: #ffffff;
 }
 
 
@@ -156,6 +163,7 @@ input::placeholder, label {
 body{
   background-color: #f0ce00;
   background-image: url("../public/images/fondocap.jpg");
+  background-size: cover;
 }
 
 .containersteps{
@@ -217,7 +225,6 @@ body{
 .formchico{
   display: flex;
   flex-direction: column;
-  padding: 0% 10%;
   border-radius: 10px;
   margin: 0px;
 }
@@ -761,21 +768,27 @@ header img:hover{
 }
 
 @media screen and (max-width:428px) {
+  .containersteps {
+    padding: 20% 5%;
+  }
+  .sponsors img {
+    width: 100px;
+  } 
   header img{ 
-    width: 80px;
+    width: 60px;
   }
   header{ 
     text-align: center!important;
   }
   h1 {
-    font-size: 1.6em;
+    font-size: 1.9em;
   }
   p.poppins-light, p{
     font-size: 12px;
   }
   .card-bg3d {
     width: 300px;
-    height: 300px;
+    height: 350px;
   }
   .redessociales button img, .descargar button img {
     width: 20px;
