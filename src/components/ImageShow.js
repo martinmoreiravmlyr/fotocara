@@ -91,7 +91,7 @@ function ImageShow({ setType }) {
   
     </div>
 
-    <button onClick={() => setType('intro')} className="reiniciar poppins-light">Reiniciar</button>
+    <button onClick={() => window.location.reload()} className="reiniciar poppins-light">Reiniciar</button>
       
     </>
 

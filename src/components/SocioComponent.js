@@ -111,7 +111,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
     updateFormData(datosDelFormulario);
 
-
     // por ejemplo, enviar los datos al servidor.
     console.log("Datos del formulario:", datosDelFormulario);
 

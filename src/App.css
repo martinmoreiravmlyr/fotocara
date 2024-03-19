@@ -153,9 +153,9 @@ input::placeholder, label {
   height: 60px;
   display: flex;
   justify-content: center;
-  bottom: 25px;
+  bottom: 10vh;
   align-items: center;
-  animation: pulsate 2s infinite ease-in-out;
+  /*animation: pulsate 2s infinite ease-in-out;*/
 }  
 
 .foto-generada{
@@ -365,7 +365,7 @@ button.next{
   color: #000000;
   border: 2px solid #f0ce00;
   width: 200px;
-  height: 40px;
+  height: 45px;
   border-radius: 50px;
   font-size: 16px;
   margin-top: 5%;
@@ -509,7 +509,6 @@ input, select.input-field{
   padding: 0px 10px;
   min-width: 300px !important;
   background-color: #cacaca00;
-  
   border-bottom: 1px solid #f0ce01;
 }
 
@@ -806,15 +805,21 @@ header img:hover{
   header{
     position: relative;
     width: 100%;
-    height: 50px;
+    height: 100px;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
   } 
   header img{ 
     width: 100px;
   }
   button.reiniciar{
-    max-width: 200px;
-    margin: 0 auto;
+    max-width: 150px;
+    display: block;
+    margin: 20px auto;
+    position: relative;
+    top: 0;
+    left: 0;
   }
   .containersteps{ 
     margin: 10vh 5vh 1vh 5vh;
@@ -826,20 +831,23 @@ header img:hover{
 }
 
 @media screen and (max-width:428px) {
+  input, select.input-field {
+    margin-bottom: 20px;
+  }  
   .containersteps {
-    margin: 10vh 2vh 1vh 2vh;
+    margin: 2vh 2vh 1vh 2vh;
   }  
   .popup-container {
     max-width: 300px;
   }  
   .containersteps {
-    padding: 20% 5%;
+    padding: 15% 5%;
   }
   .sponsors img {
     width: 100px;
   } 
   header img{ 
-    width: 60px;
+    width: 70px;
   }
   header{ 
     text-align: center!important;
@@ -853,11 +861,13 @@ header img:hover{
   .card-bg3d {
     width: 300px;
     height: 350px;
+    top: -5px;
+    border-radius: 40px;
   }
   .redessociales button img, .descargar button img {
     width: 20px;
   }
   header img {
-    top: 10px;
+    top: 0vh;
   }  
 }  
