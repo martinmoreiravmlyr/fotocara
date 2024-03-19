@@ -20,6 +20,7 @@ function ColaImagenes({ nextStep }) {
         if (true) {
           nextStep();
         }
+        
       } catch (error) {
         console.error("Error al obtener la posición en la cola", error);
         setPopupContent({

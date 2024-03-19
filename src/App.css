@@ -2,6 +2,15 @@ body{
   cursor: default;
 }
 
+a{
+  text-decoration: none;
+  color: #000000;
+}
+
+button:hover a{
+  color: #f0ce00;
+}
+
 header{
   text-align: left;
   position: absolute;
@@ -25,6 +34,39 @@ p, label{
 button{
   cursor: pointer;
 }
+
+button.buttonnormal{
+  background-color: #f0ce00;
+  color: #000000;
+  border: 2px solid #f0ce00;
+  width: 200px;
+  height: 45px;
+  margin: 0 10px;
+  border-radius: 50px;
+  font-size: 16px;
+  top: 50px;
+  right: 50px;
+  z-index: 999999;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+button.buttonnormal:hover{
+  border: 2px solid #f0ce00;
+  background-color:#000000;
+  cursor: pointer;
+  color:#f0ce00;
+  top: -10px;
+  box-shadow: 0px 10px 25px #ffdb0069;  
+}  
+
+.botonesfinal{
+  display: flex;
+  flex-direction: column;
+}
+
 
 input{
   color: #f0ce00;
@@ -294,7 +336,7 @@ h1, h2{
   color:#000000;
   border: 2px solid #f0ce00;
   width: 200px;
-  height: 40px;
+  height: 45px;
   border-radius: 50px;
   font-size: 16px;
   position: relative;
@@ -320,7 +362,7 @@ button.continuar{
   color: #000000;
   border: 2px solid #f0ce00;
   width: 200px;
-  height: 40px;
+  height: 45px;
   border-radius: 50px;
   font-size: 16px;
   position: absolute;
@@ -338,7 +380,7 @@ button.reiniciar{
   color: #000000;
   border: 2px solid #f0ce00;
   width: 200px;
-  height: 40px;
+  height: 45px;
   border-radius: 50px;
   font-size: 16px;
   position: absolute;
@@ -831,6 +873,13 @@ header img:hover{
 }
 
 @media screen and (max-width:428px) {
+  .redessociales, .descargar {
+    display: flex;
+    flex-direction: column;
+  }
+  button.buttonnormal {
+    margin: 10px;
+  }
   .formulario{
     margin-top: 20px;
   }  
@@ -857,9 +906,10 @@ header img:hover{
   }
   h1 {
     font-size: 2.1em;
+    line-height: 1em;
   }
   p.poppins-light, p{
-    font-size: 16px;
+    font-size: 1.2em;
     margin-top: 10px;
   }
   .card-bg3d {
@@ -869,7 +919,7 @@ header img:hover{
     border-radius: 40px;
   }
   .redessociales button img, .descargar button img {
-    width: 20px;
+    width: 30px;
   }
   header img {
     top: 0vh;

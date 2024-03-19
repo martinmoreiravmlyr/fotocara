@@ -67,24 +67,38 @@ function ImageShow({ setType }) {
       <div id="presentala">
         <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
         <Card3d dataImage="/images/generada_omar.jpg" alt="Foto Generada" className='card-bg3d' />
+
+        <div className='botonesfinal'>
+          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/">Comprala aquí</a></button>
+          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/">Ver modelo 360º</a></button>
+        </div>
+       
         <div className="botonerashare">
           <div className="redessociales">
-            <p>Compartir</p>
-            <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
-              <img src="images/social_x.png" alt="Compartir en X" />
-            </button>
-            <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
-              <img src="images/social_i.png" alt="Compartir en Instagram" />
-            </button>
-            <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
-              <img src="images/social_f.png" alt="Compartir en Facebook" />
-            </button>
+            <div>
+              <p>Compartir</p>
+            </div>
+            <div>
+              <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
+                <img src="images/social_x.png" alt="Compartir en X" />
+              </button>
+              <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
+                <img src="images/social_i.png" alt="Compartir en Instagram" />
+              </button>
+              <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
+                <img src="images/social_f.png" alt="Compartir en Facebook" />
+              </button>
+            </div>
           </div>
           <div className="descargar">
-            <p>Descargar</p>
-            <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
-              <img src="images/descargar.png" alt="Descargar imagen" />
-            </button>
+            <div>
+              <p>Descargar</p>
+            </div>
+            <div>
+              <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
+                <img src="images/descargar.png" alt="Descargar imagen" />
+              </button>
+            </div>
           </div>
         </div>
       </div>  
