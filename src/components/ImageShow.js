@@ -12,7 +12,6 @@ function ImageShow({ setType }) {
   const { formData } = useFormData();
   const nombreUsuario = formData.nombre
 
-
   const shareOnFacebook = () => {
     const url = encodeURIComponent(window.location.href);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
@@ -39,8 +38,6 @@ function ImageShow({ setType }) {
       )
     });
     setShowPopup(true);
-
-    downloadImage();
   };
 
   const downloadImage = () => {

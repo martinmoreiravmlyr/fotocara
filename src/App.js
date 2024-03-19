@@ -19,6 +19,17 @@ function App() {
   const [lastAction, setLastAction] = useState('');
 
 
+  // useEffect(() => {
+  //   // Función para deshabilitar el click derecho
+  //   const disableRightClick = (event) => event.preventDefault();
+  //   // Agregar listener al montar
+  //   document.addEventListener('contextmenu', disableRightClick);
+  //   // Remover listener al desmontar
+  //   return () => document.removeEventListener('contextmenu', disableRightClick);
+  // }, []);
+
+
+
   const nextStep = () => {
     setLoading(true); // Muestra el loader al iniciar la transición
     setType((currentType) => {
