@@ -1,31 +1,64 @@
+import { useState } from 'react';
 import Card3d from "./Card3d";
+import Popup from '../components/Popup';
+
 
 function ImageShow({ setType }) { 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupContent, setPopupContent] = useState({ title: '', text: '' });
 
   const shareOnFacebook = () => {
     const url = encodeURIComponent(window.location.href);
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
     window.open(shareUrl, '_blank');
+    downloadImage();
   };
 
-  // Reemplaza esta función por la lógica adecuada para compartir en Instagram y otras plataformas
-  const shareOnOtherPlatform = () => {
-    console.log("Compartir en otra plataforma.");
+  const shareOnX = () => {
+    const text = encodeURIComponent("Este año la nueva del Manya la presento YO");
+    const url = encodeURIComponent(window.location.href);
+    const hashtags = "LaNuevadePeñarol,Peñarol2024";
+    const via = "tuUsuarioDeTwitter";
+    const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`;
+    window.open(shareUrl, '_blank');
+    downloadImage();
+  };
+
+  const shareOnInstagramGuide = () => {
+    setPopupContent({
+      title: 'Compartir en Instagram',
+      text: `Para compartir esta imagen en Instagram, primero descárgala y luego súbela a tu historia o feed.`,
+      actionButton: (
+        <button onClick={downloadImage}>Descargar Imagen</button>
+      )
+    });
+    setShowPopup(true);
+
+    downloadImage();
   };
 
   const downloadImage = () => {
-    // Suponiendo que la URL de la imagen a descargar es '/images/generada.png'
-    const imageUrl = '/images/generada_omar.jpg'; // Deberías ajustar esto según la ubicación real de tu imagen
+    const imageUrl = '/images/generada_omar.jpg'; 
     const link = document.createElement('a');
     link.href = imageUrl;
-    link.download = 'imagen-generada.png'; // Esto define el nombre predeterminado del archivo para la descarga
-    document.body.appendChild(link); // Necesario para que los navegadores procesen el clic
-    link.click(); // Simula un clic en el enlace para iniciar la descarga
-    document.body.removeChild(link); // Limpia agregando el elemento al DOM
+    link.download = 'camiseta-peñarol-2024.png'; 
+    document.body.appendChild(link); 
+    link.click(); 
+    document.body.removeChild(link); 
   };
 
   return (
     <>
+    
+    {showPopup && (
+      <Popup
+        title={popupContent.title}
+        text={popupContent.text}
+        onClose={() => setShowPopup(false)}
+      >
+        <button onClick={downloadImage} style={{marginTop: '20px'}}>Descargar Imagen</button>
+      </Popup>
+    )}
 
     <div className="containersteps">
       <div id="presentala">
@@ -34,12 +67,10 @@ function ImageShow({ setType }) {
         <div className="botonerashare">
           <div className="redessociales">
             <p>Compartir</p>
-            {/* Asumiendo que X es otra plataforma, reemplaza shareOnOtherPlatform por la función correcta */}
-            <button className="social-link-button" aria-label="Share on X" onClick={shareOnOtherPlatform}>
+            <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
               <img src="images/social_x.png" alt="Compartir en X" />
             </button>
-            {/* Instagram no permite compartir directamente, podrías redirigir a una historia si es una URL. */}
-            <button className="social-link-button" aria-label="Share on I" onClick={shareOnOtherPlatform}>
+            <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
               <img src="images/social_i.png" alt="Compartir en Instagram" />
             </button>
             <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
@@ -58,7 +89,7 @@ function ImageShow({ setType }) {
     </div>
 
     <button onClick={() => setType('intro')} className="reiniciar poppins-light">Reiniciar</button>
-  
+      
     </>
 
   );

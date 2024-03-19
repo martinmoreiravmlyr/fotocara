@@ -63,17 +63,20 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     setEsSocioValido(validarNumeroSocio(numero));
   };
 
+  // Determina qué imagen mostrar basándose en las propiedades 'capturedImage' y 'uploadedImage'
+  const displayImage = lastAction === 'upload' ? uploadedImage : capturedImage;
+
   useEffect(() => {
     const verificarCampos = () => {
       if (esSocio === 'si') {
-        return esSocioValido && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero;
+        return esSocioValido && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
       } else {
         return ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero;
       }
     };
 
     setBotonHabilitado(verificarCampos());
-  }, [esSocio, esSocioValido, numeroSocio, ciValido, emailValido, edadValida, nombre, apellido, ci, email, edad, genero]);
+  }, [esSocio, esSocioValido, numeroSocio, ciValido, emailValido, edadValida, nombre, apellido, ci, email, edad, genero, displayImage]);
 
   const handleImageUpload = event => {
     const file = event.target.files[0];
@@ -84,9 +87,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     }
   };
 
-  // Determina qué imagen mostrar basándose en las propiedades 'capturedImage' y 'uploadedImage'
-  const displayImage = lastAction === 'upload' ? uploadedImage : capturedImage;
-
+  
 
   const handleSubmit = (event) => {
     event.preventDefault(); 
