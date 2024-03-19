@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import Card3d from "./Card3d";
 import Popup from '../components/Popup';
+import { useFormData } from './providers/FormContext';
+
+
 
 
 function ImageShow({ setType }) { 
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: '', text: '' });
+  const { formData } = useFormData();
+  const nombreUsuario = formData.nombre
+
 
   const shareOnFacebook = () => {
     const url = encodeURIComponent(window.location.href);
@@ -62,7 +68,7 @@ function ImageShow({ setType }) {
 
     <div className="containersteps">
       <div id="presentala">
-        <h1>Presentala en tus redes</h1>
+        <h1>¡{nombreUsuario}! Ahora podes presentarla en tus redes</h1>
         <Card3d dataImage="/images/generada_omar.jpg" alt="Foto Generada" className='card-bg3d' />
         <div className="botonerashare">
           <div className="redessociales">

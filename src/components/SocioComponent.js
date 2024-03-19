@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useFormData } from './providers/FormContext';
+
 
 function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction }) {
   const [esSocio, setEsSocio] = useState('');
@@ -17,6 +19,8 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [ciValido, setCiValido] = useState(true);
   const [emailValido, setEmailValido] = useState(true);
   const [edadValida, setEdadValida] = useState(true);
+
+  const { updateFormData } = useFormData();
 
   // Validación de campos individuales
   const validarCi = (ci) => {
@@ -71,7 +75,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
       if (esSocio === 'si') {
         return esSocioValido && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
       } else {
-        return ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero;
+        return ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
       }
     };
 
@@ -104,6 +108,9 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
       genero,
       imagen: displayImage, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
     };
+
+    updateFormData(datosDelFormulario);
+
 
     // por ejemplo, enviar los datos al servidor.
     console.log("Datos del formulario:", datosDelFormulario);
@@ -164,7 +171,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
             {esSocio === 'si' && (
               <input
-                type="text"
+                type="number"
                 placeholder="Número de Socio"
                 className="input-field"
                 onChange={handleNumeroSocioChange}

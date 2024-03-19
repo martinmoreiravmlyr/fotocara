@@ -4,8 +4,10 @@ function Popup({ title, text, onClose, children }) {
         <div className="popup-container">
           <h1>{title}</h1>
           <p>{text}</p>
-          {children} 
-          <button onClick={onClose}>Cerrar</button>
+          <div className="botonespop">
+            {children} 
+            <button onClick={onClose}>Cerrar</button>
+          </div>
         </div>
       </div>
     );

@@ -7,6 +7,8 @@ import ImageShow from './components/ImageShow';
 import IntroComponent from './components/IntroComponent';
 import SocioComponent from './components/SocioComponent';
 import HeaderComponent from './components/HeaderComponent';
+import { FormProvider } from './components/providers/FormContext';
+
 
 
 function App() {
@@ -15,7 +17,6 @@ function App() {
   const [loading, setLoading] = useState(false); // Nuevo estado para controlar la visibilidad de LogoLoader
   const [capturedImage, setCapturedImage] = useState(null);
   const [lastAction, setLastAction] = useState('');
-
 
 
   const nextStep = () => {
@@ -42,29 +43,31 @@ function App() {
   const toggleCamera = () => setShowCamera(!showCamera); // Función para mostrar/ocultar la cámara
 
   return (
-    <div>
-      <HeaderComponent />
-      {loading && <LogoLoader />}
+    <FormProvider>
       <div>
-        {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-        {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
-        {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
+        <HeaderComponent />
+        {loading && <LogoLoader />}
+        <div>
+          {type === 'intro' && <IntroComponent nextStep={nextStep} />}
+          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
+          {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
 
-        {type === 'step1' && (
-        <>
-          <ColaImagenes nextStep={nextStep}/>
-        </>
-        )}
-        {type === 'step2' && <div>
-          <ImageShow setType={setType}/>
-        </div>}
-        {type === 'error' && 
-          <div className="error">
-            <h1>Algo salio mal.</h1>
-            <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
+          {type === 'step1' && (
+          <>
+            <ColaImagenes nextStep={nextStep}/>
+          </>
+          )}
+          {type === 'step2' && <div>
+            <ImageShow setType={setType}/>
           </div>}
+          {type === 'error' && 
+            <div className="error">
+              <h1>Algo salio mal.</h1>
+              <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
+            </div>}
+        </div>
       </div>
-    </div>
+    </FormProvider>
   );
 }
 
