@@ -137,7 +137,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         <h1>Este año la nueva del Manya la presentás vos.</h1>
         <p className='poppins-light'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y conocé la nueva camiseta del Manya.</p>
 
-        <form onSubmit={handleSubmit}>
+        <form className='formulario' onSubmit={handleSubmit}>
 
           <div>
             <p className='poppins-light blanco'>¿Sos socio?</p> 

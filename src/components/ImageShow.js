@@ -32,7 +32,7 @@ function ImageShow({ setType }) {
   const shareOnInstagramGuide = () => {
     setPopupContent({
       title: 'Compartir en Instagram',
-      text: `Para compartir esta imagen en Instagram, primero descárgala y luego súbela a tu historia o feed.`,
+      text: `Para compartir esta imagen en Instagram, primero descargala y luego subila a tu historia o feed.`,
       actionButton: (
         <button onClick={downloadImage}>Descargar Imagen</button>
       )
@@ -65,7 +65,7 @@ function ImageShow({ setType }) {
 
     <div className="containersteps">
       <div id="presentala">
-        <h1>¡{nombreUsuario}! Ahora podes presentarla en tus redes</h1>
+        <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
         <Card3d dataImage="/images/generada_omar.jpg" alt="Foto Generada" className='card-bg3d' />
         <div className="botonerashare">
           <div className="redessociales">
