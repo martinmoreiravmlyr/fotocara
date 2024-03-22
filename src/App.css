@@ -62,9 +62,9 @@ button.buttonnormal:hover{
   box-shadow: 0px 10px 25px #ffdb0069;  
 }  
 
-.botonesfinal{
-  display: flex;
-  flex-direction: column;
+.botonesfinal {
+    display: flex;
+    flex-direction: row;
 }
 
 
@@ -700,8 +700,9 @@ header img:hover{
   border: none;
 }
 
-.redessociales, .descargar{
-  display: flex;
+.redessociales, .descargar {
+    display: flex;
+    align-items: center;
 }
 
 .redessociales button img, .descargar button img{
@@ -873,6 +874,10 @@ header img:hover{
 }
 
 @media screen and (max-width:428px) {
+  .botonesfinal{
+    display: flex;
+    flex-direction: column;
+  }
   .redessociales, .descargar {
     display: flex;
     flex-direction: column;

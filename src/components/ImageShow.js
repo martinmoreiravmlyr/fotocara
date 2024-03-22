@@ -69,7 +69,7 @@ function ImageShow({ setType }) {
         <Card3d dataImage="/images/generada_omar.jpg" alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
-          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/">Comprala aquí</a></button>
+          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
           <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/">Ver modelo 360º</a></button>
         </div>
        
