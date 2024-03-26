@@ -29,7 +29,6 @@ function App() {
   // }, []);
 
 
-
   const nextStep = () => {
     setLoading(true); // Muestra el loader al iniciar la transición
     setType((currentType) => {

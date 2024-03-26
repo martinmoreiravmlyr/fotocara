@@ -24,7 +24,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
   // Validación de campos individuales
   const validarCi = (ci) => {
-    const regexCi = /^\d{7}[0-9]$/; // Ajusta esta expresión regular según sea necesario
+    const regexCi = /^\d{7,8}$/; 
     return regexCi.test(ci);
   };
 
@@ -34,11 +34,11 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   };
 
   const validarEdad = (edad) => {
-    return edad > 0 && edad <= 110; // Asume que la edad debe ser un número entre 1 y 110
+    return edad > 0 && edad <= 110;
   };
 
   const validarNumeroSocio = (numero) => {
-    const regexNumeroSocio = /^\d{6}$/;
+    const regexNumeroSocio = /^\d{1,6}$/; 
     return regexNumeroSocio.test(numero);
   };
 
