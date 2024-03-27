@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useFormData } from './providers/FormContext';
+import Popup from '../components/Popup';
 
 
 function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction }) {
@@ -22,7 +23,19 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
   const { updateFormData } = useFormData();
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupContent, setPopupContent] = useState({ title: '', text: '' });
+
+  
+
+
   // Validación de campos individuales
+  const validarTipoDeArchivo = (nombreArchivo) => {
+    const extensionesPermitidas = /\.(jpg|jpeg|png|gif|heif|webp)$/i;
+    return extensionesPermitidas.test(nombreArchivo);
+  };
+  
+
   const validarCi = (ci) => {
     const regexCi = /^\d{7,8}$/; 
     return regexCi.test(ci);
@@ -82,12 +95,18 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     setBotonHabilitado(verificarCampos());
   }, [esSocio, esSocioValido, numeroSocio, ciValido, emailValido, edadValida, nombre, apellido, ci, email, edad, genero, displayImage]);
 
-  const handleImageUpload = event => {
+  const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    if (file && validarTipoDeArchivo(file.name)) {
       const imageUrl = URL.createObjectURL(file);
       setUploadedImage(imageUrl);
       setLastAction('upload');
+    } else {
+      setPopupContent({
+        title: 'Formato de archivo no permitido.',
+        text: `Por favor, sube un archivo JPEG, PNG, GIF, HEIF o WebP.`,
+      });
+      setShowPopup(true);
     }
   };
 
@@ -223,6 +242,15 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 <input type="file" accept="image/*" id="fileInput" className="input-file" onChange={handleImageUpload} />
                 <label htmlFor="fileInput" className="label-file"><span className="material-icons">cloud_upload</span>Subir foto</label>
               </div>
+
+
+              {showPopup && (
+                <Popup
+                  title={popupContent.title}
+                  text={popupContent.text}
+                  onClose={() => setShowPopup(false)}
+                />
+              )}
 
               <div>   
                 <button type="button" onClick={toggleCamera} className="take-photo buttonline poppins-light"><span className="material-icons">photo_camera</span>Tomar foto</button>
