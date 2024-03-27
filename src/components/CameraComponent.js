@@ -21,17 +21,23 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
     canvas.height = videoRef.current.videoHeight;
     const context = canvas.getContext('2d');
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-
+  
     const imageSrc = canvas.toDataURL('image/png');
-    setCapturedImage(imageSrc); 
-
+    setCapturedImage(imageSrc);
     setLastAction('camera');
-
+  
+    const downloadLink = document.createElement('a');
+    downloadLink.href = imageSrc;
+    downloadLink.download = 'captured_image.png'; 
+    document.body.appendChild(downloadLink); 
+    downloadLink.click(); 
+    document.body.removeChild(downloadLink); 
+  
     setTimeout(() => {
       toggleCamera();
     }, 500);
-
   };
+  
   
   return (
     <div>
