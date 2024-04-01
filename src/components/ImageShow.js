@@ -39,41 +39,31 @@ function ImageShow({setType}) {
     setShowPopup(true);
   };
 
-  // Adaptado para imágenes base64
   const downloadImage = () => {
-    // Ensure the base64 string has the correct prefix
-    let imageData = processedImage64;
-    if (!processedImage64.startsWith('data:image/jpeg;base64,')) {
-      imageData = 'data:image/jpeg;base64,' + processedImage64;
-    }
+    // La URL completa de la imagen
+    const imageUrl = `http://localhost:5000/static/imgs/combined/${processedImage64}`;
   
-    // Extract the content part of the base64 string
-    const base64Content = imageData.split(',')[1];
-    const byteString = atob(base64Content);
-    
-    // Determine the content type from the prefix
-    const mimeString = imageData.split(',')[0].split(':')[1].split(';')[0];
+    // Usa fetch para obtener la imagen
+    fetch(imageUrl)
+      .then(response => response.blob()) // Convierte la respuesta en Blob
+      .then(blob => {
+        // Crea una URL para el Blob
+        const blobUrl = URL.createObjectURL(blob);
   
-    // Convert the base64 string to a Blob
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([ab], {type: mimeString});
+        // Crea un enlace y fuerza la descarga
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'Camiseta_peñarol.jpeg'; // Especifica el nombre de archivo para la descarga
+        document.body.appendChild(link); // Necesario para que el enlace funcione en Firefox
+        link.click(); // Simula un clic en el enlace para iniciar la descarga
   
-    // Create a URL for the blob object and initiate download
-    const blobUrl = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = blobUrl;
-    link.download = 'Camiseta_peñarol.jpeg'; // Specify the download file name
-    document.body.appendChild(link);
-    link.click();
-  
-    // Clean up by removing the link and revoking the blob URL
-    document.body.removeChild(link);
-    URL.revokeObjectURL(blobUrl);
+        // Limpieza
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl); // Libera la memoria una vez que la descarga ha sido iniciada
+      })
+      .catch(console.error); // Asegúrate de manejar cualquier error en el proceso
   };
+  
 
   return (
     <>
@@ -93,7 +83,7 @@ function ImageShow({setType}) {
           <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
           
           {/* Muestra la imagen base64 */}
-          <Card3d dataImage={processedImage64} alt="Foto Generada" className='card-bg3d' />
+          <Card3d dataImage={`http://localhost:5000/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
           <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>

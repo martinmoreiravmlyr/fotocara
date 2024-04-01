@@ -2,18 +2,29 @@ import React, { useEffect, useRef } from 'react';
 
 const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
   const videoRef = useRef(null);
+  const streamRef = useRef(null); // Ref to hold the stream
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
+      navigator.mediaDevices.getUserMedia({ video: { width: 512, height: 512 } }) // Request HD video
         .then((stream) => {
           videoRef.current.srcObject = stream;
+          streamRef.current = stream; // Store the stream for later use
         })
         .catch((error) => {
           console.error("Error accessing the camera", error);
         });
     }
+
+    // Cleanup function to stop the camera when the component unmounts
+    return () => stopCamera();
   }, []);
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+    }
+  };
 
   const capturePhoto = () => {
     const canvas = document.createElement('canvas');
@@ -22,19 +33,13 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
     const context = canvas.getContext('2d');
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
   
-    const imageSrc = canvas.toDataURL('image/png');
+    const imageSrc = canvas.toDataURL('image/jpg');
     setCapturedImage(imageSrc);
     setLastAction('camera');
   
-    const downloadLink = document.createElement('a');
-    downloadLink.href = imageSrc;
-    downloadLink.download = 'captured_image.png'; 
-    document.body.appendChild(downloadLink); 
-    downloadLink.click(); 
-    document.body.removeChild(downloadLink); 
-  
     setTimeout(() => {
       toggleCamera();
+      stopCamera();
     }, 500);
   };
   

@@ -31,7 +31,7 @@ const Card3d = ({ dataImage }) => {
   };
 
   const cardBgImage = {
-    backgroundImage: `url(data:image/jpeg;base64,${dataImage})`
+    backgroundImage: `url(${dataImage})`
   };
 
   return (

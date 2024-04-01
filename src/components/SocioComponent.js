@@ -128,9 +128,13 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         email,
         edad,
         genero,
-        imagen: displayImage, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        imagen: displayImage,
+        lastAction // o uploadedImage, dependiendo de cómo estés manejando las imágenes
     };
-
+    console.log(lastAction)
+    console.log("--------------------")
+    console.log(displayImage)
+    console.log("--------------------")
     try {
         const response = await fetch('http://localhost:5000/upload_data', {
             method: 'POST',
@@ -146,7 +150,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
         // Asume que responseData contiene un campo 'processedImage64' con la URL de la imagen combinada
         const processedImage64 = responseData.processedImage64;
-
+        console.log(processedImage64)
         // Actualiza el estado global o local con la URL de la imagen procesada y los demás datos del formulario
         updateFormData({ ...datosDelFormulario, processedImage64 });
 
@@ -215,18 +219,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
             <p className='poppins-light blanco'>La quiero presentar como</p>  
             <div className='genero'>
-              <div className="radio-container">
-                <input
-                  type="radio"
-                  name="genero"
-                  value="female"
-                  onChange={(e) => setGenero(e.target.value)}
-                  id="female"
-                />
-                <label htmlFor="female" className="checkmark"></label>
-                <p>Jugador</p>
-              </div>
-
+              
               <div className="radio-container">
                 <input
                   type="radio"
@@ -236,8 +229,22 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   id="male"
                 />
                 <label htmlFor="male" className="checkmark"></label>
+                <p>Jugador</p>
+              </div>
+
+              <div className="radio-container">
+                <input
+                  type="radio"
+                  name="genero"
+                  value="female"
+                  onChange={(e) => setGenero(e.target.value)}
+                  id="female"
+                />
+                <label htmlFor="female" className="checkmark"></label>
                 <p>Jugadora</p>
               </div>
+
+              
             </div>
 
             <div className='contenedor-foto'>
