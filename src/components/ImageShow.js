@@ -4,13 +4,12 @@ import Popup from '../components/Popup';
 import { useFormData } from './providers/FormContext';
 
 
-
-
-function ImageShow({ setType }) { 
+function ImageShow({setType}) { 
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: '', text: '' });
   const { formData } = useFormData();
-  const nombreUsuario = formData.nombre
+  const nombreUsuario = formData.nombre;
+  const processedImage64 = formData.processedImage64;
 
   const shareOnFacebook = () => {
     const url = encodeURIComponent(window.location.href);
@@ -40,33 +39,61 @@ function ImageShow({ setType }) {
     setShowPopup(true);
   };
 
+  // Adaptado para imágenes base64
   const downloadImage = () => {
-    const imageUrl = '/images/generada_omar.jpg'; 
+    // Ensure the base64 string has the correct prefix
+    let imageData = processedImage64;
+    if (!processedImage64.startsWith('data:image/jpeg;base64,')) {
+      imageData = 'data:image/jpeg;base64,' + processedImage64;
+    }
+  
+    // Extract the content part of the base64 string
+    const base64Content = imageData.split(',')[1];
+    const byteString = atob(base64Content);
+    
+    // Determine the content type from the prefix
+    const mimeString = imageData.split(',')[0].split(':')[1].split(';')[0];
+  
+    // Convert the base64 string to a Blob
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ab], {type: mimeString});
+  
+    // Create a URL for the blob object and initiate download
+    const blobUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = imageUrl;
-    link.download = 'camiseta-peñarol-2024.png'; 
-    document.body.appendChild(link); 
-    link.click(); 
-    document.body.removeChild(link); 
+    link.href = blobUrl;
+    link.download = 'Camiseta_peñarol.jpeg'; // Specify the download file name
+    document.body.appendChild(link);
+    link.click();
+  
+    // Clean up by removing the link and revoking the blob URL
+    document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
   };
 
   return (
     <>
     
     {showPopup && (
-      <Popup
-        title={popupContent.title}
-        text={popupContent.text}
-        onClose={() => setShowPopup(false)}
-      >
-        <button onClick={downloadImage} style={{marginTop: '20px'}}>Descargar Imagen</button>
-      </Popup>
-    )}
+        <Popup
+          title={popupContent.title}
+          text={popupContent.text}
+          onClose={() => setShowPopup(false)}
+        >
+          <button onClick={downloadImage} style={{marginTop: '20px'}}>Descargar Imagen</button>
+        </Popup>
+      )}
 
-    <div className="containersteps">
-      <div id="presentala">
-        <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
-        <Card3d dataImage="/images/generada_omar.jpg" alt="Foto Generada" className='card-bg3d' />
+      <div className="containersteps">
+        <div id="presentala">
+          <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
+          
+          {/* Muestra la imagen base64 */}
+          <Card3d dataImage={processedImage64} alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
           <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import CameraComponent from './components/CameraComponent';
 import LogoLoader from './components/LogoLoader';
-import ColaImagenes from './components/ColaImagenes';
 import ImageShow from './components/ImageShow';
 import IntroComponent from './components/IntroComponent';
 import SocioComponent from './components/SocioComponent';
@@ -62,12 +61,8 @@ function App() {
           {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
           {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
 
-          {type === 'step1' && (
-          <>
-            <ColaImagenes nextStep={nextStep}/>
-          </>
-          )}
-          {type === 'step2' && <div>
+          
+          {type === 'step1' && <div>
             <ImageShow setType={setType}/>
           </div>}
           {type === 'error' && 

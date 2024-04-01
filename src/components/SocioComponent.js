@@ -98,10 +98,15 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file && validarTipoDeArchivo(file.name)) {
-      const imageUrl = URL.createObjectURL(file);
-      setUploadedImage(imageUrl);
-      setLastAction('upload');
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // `reader.result` contiene la imagen en base64
+        setUploadedImage(reader.result); // Asegúrate de que `setUploadedImage` guarde la cadena base64
+        setLastAction('upload');
+      };
+      reader.readAsDataURL(file); // Convierte la imagen a base64
     } else {
+      // Manejo de error para formato de archivo no permitido
       setPopupContent({
         title: 'Formato de archivo no permitido.',
         text: `Por favor, sube un archivo JPEG, PNG, GIF, HEIF o WebP.`,
@@ -109,46 +114,48 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
       setShowPopup(true);
     }
   };
-
   
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     // Compila todos los datos del formulario en un solo objeto
     const datosDelFormulario = {
-      esSocio,
-      numeroSocio,
-      nombre,
-      apellido,
-      ci,
-      email,
-      edad,
-      genero,
-      imagen: displayImage, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        esSocio,
+        numeroSocio,
+        nombre,
+        apellido,
+        ci,
+        email,
+        edad,
+        genero,
+        imagen: displayImage, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
     };
 
-    updateFormData(datosDelFormulario);
+    try {
+        const response = await fetch('http://localhost:5000/upload_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(datosDelFormulario),
+        });
 
-    // por ejemplo, enviar los datos al servidor.
-    console.log("Datos del formulario:", datosDelFormulario);
+        if (!response.ok) throw new Error('Respuesta del servidor no fue OK.');
 
-    // Si tienes que enviar los datos a un servidor, aquí iría el código
-    // fetch('tuEndpointDeAPI', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(datosDelFormulario),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    // });
+        const responseData = await response.json();
 
-    nextStep();
-  };
+        // Asume que responseData contiene un campo 'processedImage64' con la URL de la imagen combinada
+        const processedImage64 = responseData.processedImage64;
+
+        // Actualiza el estado global o local con la URL de la imagen procesada y los demás datos del formulario
+        updateFormData({ ...datosDelFormulario, processedImage64 });
+
+        nextStep(); // Avanza al siguiente paso donde presumiblemente se mostrará la imagen procesada
+    } catch (error) {
+        console.error('Error al enviar los datos del formulario:', error);
+        // Considera actualizar el estado con un mensaje de error para mostrar al usuario
+    }
+};
 
   return (
     <div className='containersteps'>
