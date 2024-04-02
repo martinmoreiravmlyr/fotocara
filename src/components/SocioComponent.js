@@ -131,34 +131,52 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         imagen: displayImage,
         lastAction // o uploadedImage, dependiendo de cómo estés manejando las imágenes
     };
-    console.log(lastAction)
-    console.log("--------------------")
-    console.log(displayImage)
-    console.log("--------------------")
     try {
-        const response = await fetch('http://localhost:5000/upload_data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(datosDelFormulario),
-        });
+      const response = await fetch('http://localhost:5000/upload_data', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(datosDelFormulario),
+      });
 
-        if (!response.ok) throw new Error('Respuesta del servidor no fue OK.');
+      const responseData = await response.json();
 
-        const responseData = await response.json();
+      if (!response.ok) {
+          // La respuesta del servidor indica un error. Podemos estar recibiendo {'errors': err.messages}
+          let errorText = "Error en la solicitud.";
 
-        // Asume que responseData contiene un campo 'processedImage64' con la URL de la imagen combinada
-        const processedImage64 = responseData.processedImage64;
-        console.log(processedImage64)
-        // Actualiza el estado global o local con la URL de la imagen procesada y los demás datos del formulario
-        updateFormData({ ...datosDelFormulario, processedImage64 });
+          if (responseData.errors) {
+              // Si el servidor responde con errores específicos, los formateamos para mostrarlos.
+              const errorsList = Object.values(responseData.errors).map((msgArray) => msgArray.join('. ')).join(' ');
+              errorText = `Se encontraron errores: ${errorsList}`;
+          } else if (responseData.error) {
+              // Para el caso de que solo se envíe un mensaje de error general.
+              errorText = responseData.error;
+          }
 
-        nextStep(); // Avanza al siguiente paso donde presumiblemente se mostrará la imagen procesada
-    } catch (error) {
-        console.error('Error al enviar los datos del formulario:', error);
-        // Considera actualizar el estado con un mensaje de error para mostrar al usuario
-    }
+          setPopupContent({
+              title: 'Error de Validación',
+              text: errorText,
+          });
+          setShowPopup(true);
+          return; // Detenemos la ejecución adicional en caso de error.
+      }
+
+      // Si la respuesta está OK, procedemos como de costumbre.
+      const processedImage64 = responseData.processedImage64;
+      console.log(processedImage64)
+      updateFormData({ ...datosDelFormulario, processedImage64 });
+      nextStep(); // Avanza al siguiente paso, por ejemplo, mostrar la imagen procesada.
+  } catch (error) {
+      console.error('Error al enviar los datos del formulario:', error);
+      // Aquí puedes manejar errores de red, por ejemplo.
+      setPopupContent({
+          title: 'Error de Red',
+          text: 'Hubo un problema al conectar con el servidor. Por favor, intenta nuevamente.',
+      });
+      setShowPopup(true);
+  }
 };
 
   return (
