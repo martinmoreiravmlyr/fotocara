@@ -83,7 +83,7 @@ function ImageShow({setType}) {
           <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
           
           {/* Muestra la imagen base64 */}
-          <Card3d dataImage={`http://localhost:5000/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
+          <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
           <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
