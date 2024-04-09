@@ -132,7 +132,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         lastAction // o uploadedImage, dependiendo de cómo estés manejando las imágenes
     };
     try {
-      const response = await fetch('http://165.227.206.41:5000/upload_data', {
+      const response = await fetch('https://lanuevadelmanya.com/api/upload_data', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
