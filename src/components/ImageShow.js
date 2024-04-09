@@ -41,7 +41,7 @@ function ImageShow({setType}) {
 
   const downloadImage = () => {
     // La URL completa de la imagen
-    const imageUrl = `http://localhost:5000/static/imgs/combined/${processedImage64}`;
+    const imageUrl = `/api/static/imgs/combined/${processedImage64}`;
   
     // Usa fetch para obtener la imagen
     fetch(imageUrl)
@@ -97,13 +97,13 @@ function ImageShow({setType}) {
             </div>
             <div>
               <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
-                <img src="images/social_x.png" alt="Compartir en X" />
+                <img src="/images/social_x.png" alt="Compartir en X" />
               </button>
               <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
-                <img src="images/social_i.png" alt="Compartir en Instagram" />
+                <img src="/images/social_i.png" alt="Compartir en Instagram" />
               </button>
               <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
-                <img src="images/social_f.png" alt="Compartir en Facebook" />
+                <img src="/images/social_f.png" alt="Compartir en Facebook" />
               </button>
             </div>
           </div>
@@ -113,7 +113,7 @@ function ImageShow({setType}) {
             </div>
             <div>
               <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
-                <img src="images/descargar.png" alt="Descargar imagen" />
+                <img src="/images/descargar.png" alt="Descargar imagen" />
               </button>
             </div>
           </div>
