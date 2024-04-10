@@ -6,18 +6,25 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: { width: 512, height: 512 } }) // Request HD video
-        .then((stream) => {
-          videoRef.current.srcObject = stream;
-          streamRef.current = stream; // Store the stream for later use
-        })
-        .catch((error) => {
-          console.error("Error accessing the camera", error);
-        });
+      // Request the highest possible resolution and front-facing camera
+      navigator.mediaDevices.getUserMedia({
+        video: {
+          width: { ideal: 1080 },
+          height: { ideal: 1080 },
+          facingMode: "user"
+        }
+      })
+      .then((stream) => {
+        videoRef.current.srcObject = stream;
+        streamRef.current = stream; // Store the stream for later use
+      })
+      .catch((error) => {
+        console.error("Error accessing the camera", error);
+      });
     }
 
     // Cleanup function to stop the camera when the component unmounts
-    return () => stopCamera();
+    return () => stopCamera(); // Cleanup
   }, []);
 
   const stopCamera = () => {
@@ -31,9 +38,11 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
     const context = canvas.getContext('2d');
+    context.imageSmoothingQuality = 'high'; // Ensure high-quality image smoothing
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
   
-    const imageSrc = canvas.toDataURL('image/jpg');
+    // Use PNG for lossless compression or increase JPEG quality
+    const imageSrc = canvas.toDataURL('image/png');
     setCapturedImage(imageSrc);
     setLastAction('camera');
   
