@@ -9,8 +9,8 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
       // Request the highest possible resolution and front-facing camera
       navigator.mediaDevices.getUserMedia({
         video: {
-          width: { ideal: 1080 },
-          height: { ideal: 1080 },
+          width: { ideal: 768 },
+          height: { ideal: 768 },
           facingMode: "user"
         }
       })
@@ -41,8 +41,9 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
     context.imageSmoothingQuality = 'high'; // Ensure high-quality image smoothing
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
   
-    // Use PNG for lossless compression or increase JPEG quality
-    const imageSrc = canvas.toDataURL('image/png');
+    // Adjust JPEG quality to balance quality and file size
+    const imageQuality = 0.7; // Start with 0.7 and adjust as needed
+    const imageSrc = canvas.toDataURL('image/jpeg', imageQuality);
     setCapturedImage(imageSrc);
     setLastAction('camera');
   
@@ -50,7 +51,7 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
       toggleCamera();
       stopCamera();
     }, 500);
-  };
+};
   
   
   return (

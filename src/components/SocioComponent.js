@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MobileDetect from 'mobile-detect';
 import { useFormData } from './providers/FormContext';
 import Popup from '../components/Popup';
 
@@ -83,6 +84,13 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   // Determina qué imagen mostrar basándose en las propiedades 'capturedImage' y 'uploadedImage'
   const displayImage = lastAction === 'upload' ? uploadedImage : capturedImage;
 
+  const [isIphone, setIsIphone] = useState(false);
+
+  useEffect(() => {
+    const md = new MobileDetect(window.navigator.userAgent);
+    setIsIphone(!!md.is('iPhone')); // Actualiza el estado basado en si es un iPhone o no
+  }, []);
+
   useEffect(() => {
     const verificarCampos = () => {
       if (esSocio === 'si') {
@@ -129,7 +137,8 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         edad,
         genero,
         imagen: displayImage,
-        lastAction // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        lastAction, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        isIphone
     };
     try {
       const response = await fetch('https://lanuevadelmanya.com/api/upload_data', {
@@ -272,9 +281,10 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             <div className='contenedor-subir-sacar'>          
               <div>
                 <input type="file" accept="image/*" id="fileInput" className="input-file" onChange={handleImageUpload} />
-                <label htmlFor="fileInput" className="label-file"><span className="material-icons">cloud_upload</span>Subir foto</label>
+                <label htmlFor="fileInput" className="label-file">
+                  <span className="material-icons">cloud_upload</span>Subir foto
+                </label>
               </div>
-
 
               {showPopup && (
                 <Popup
@@ -284,9 +294,13 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 />
               )}
 
-              <div>   
-                <button type="button" onClick={toggleCamera} className="take-photo buttonline poppins-light"><span className="material-icons">photo_camera</span>Tomar foto</button>
-              </div>
+              {!isIphone && (
+                <div>   
+                  <button type="button" onClick={toggleCamera} className="take-photo buttonline poppins-light">
+                    <span className="material-icons">photo_camera</span>Tomar foto
+                  </button>
+                </div>
+              )}
             </div>
 
             <button 
