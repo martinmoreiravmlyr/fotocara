@@ -87,7 +87,6 @@ function ImageShow({setType}) {
 
         <div className='botonesfinal'>
           <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
-          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/">Ver modelo 360º</a></button>
         </div>
        
         <div className="botonerashare">

@@ -4,15 +4,15 @@ import { useFormData } from './providers/FormContext';
 import Popup from '../components/Popup';
 
 
-function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction }) {
-  const [esSocio, setEsSocio] = useState('');
+function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction, setLoading }) {
+  const [esSocio, setEsSocio] = useState('no');
   const [numeroSocio, setNumeroSocio] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [ci, setCi] = useState('');
   const [email, setEmail] = useState('');
   const [edad, setEdad] = useState('');
-  const [genero, setGenero] = useState('');
+  const [genero, setGenero] = useState('male');
   const [botonHabilitado, setBotonHabilitado] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -27,7 +27,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: '', text: '' });
 
-  
+  const [isIphone, setIsIphone] = useState(false);
 
 
   // Validación de campos individuales
@@ -36,7 +36,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     return extensionesPermitidas.test(nombreArchivo);
   };
   
-
   const validarCi = (ci) => {
     const regexCi = /^\d{7,8}$/; 
     return regexCi.test(ci);
@@ -84,8 +83,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   // Determina qué imagen mostrar basándose en las propiedades 'capturedImage' y 'uploadedImage'
   const displayImage = lastAction === 'upload' ? uploadedImage : capturedImage;
 
-  const [isIphone, setIsIphone] = useState(false);
-
   useEffect(() => {
     const md = new MobileDetect(window.navigator.userAgent);
     setIsIphone(!!md.is('iPhone')); // Actualiza el estado basado en si es un iPhone o no
@@ -125,6 +122,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);  
 
     // Compila todos los datos del formulario en un solo objeto
     const datosDelFormulario = {
@@ -137,9 +135,10 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         edad,
         genero,
         imagen: displayImage,
-        lastAction, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        lastAction,
         isIphone
     };
+
     try {
       const response = await fetch('https://lanuevadelmanya.com/api/upload_data', {
           method: 'POST',
@@ -185,6 +184,8 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
           text: 'Hubo un problema al conectar con el servidor. Por favor, intenta nuevamente.',
       });
       setShowPopup(true);
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -205,6 +206,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   type="radio"
                   name="esSocio"
                   value="si"
+                  checked={esSocio === 'si'}
                   onChange={(e) => setEsSocio(e.target.value)}
                   id="socio_si"
                 />
@@ -217,8 +219,10 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   type="radio"
                   name="esSocio"
                   value="no"
+                  checked={esSocio === 'no'}
                   onChange={(e) => setEsSocio(e.target.value)}
                   id="socio_no"
+                  defaultChecked
                 />
                 <label htmlFor="socio_no" className="checkmark"></label>
                 <p>No</p>
@@ -252,6 +256,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   type="radio"
                   name="genero"
                   value="male"
+                  checked={genero === 'male'}
                   onChange={(e) => setGenero(e.target.value)}
                   id="male"
                 />
@@ -264,6 +269,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   type="radio"
                   name="genero"
                   value="female"
+                  checked={genero === 'female'}
                   onChange={(e) => setGenero(e.target.value)}
                   id="female"
                 />
@@ -309,7 +315,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
               className={`next poppins-light ${!botonHabilitado ? 'disabled' : ''}`}
               disabled={!botonHabilitado}
             >
-              Conocé la camiseta
+              Probarme Camiseta
             </button>
           </div>
 

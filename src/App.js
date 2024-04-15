@@ -17,9 +17,8 @@ function App() {
   const [capturedImage, setCapturedImage] = useState(null);
   const [lastAction, setLastAction] = useState('');
 
-
+  // Función para deshabilitar el click derecho
   // useEffect(() => {
-  //   // Función para deshabilitar el click derecho
   //   const disableRightClick = (event) => event.preventDefault();
   //   // Agregar listener al montar
   //   document.addEventListener('contextmenu', disableRightClick);
@@ -58,7 +57,7 @@ function App() {
         {loading && <LogoLoader />}
         <div>
           {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
+          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} setLoading={setLoading} />}
           {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
 
           

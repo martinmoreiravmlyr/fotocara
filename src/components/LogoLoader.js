@@ -1,8 +1,13 @@
 import React from 'react';
+import Lottie from "lottie-react";
+import groovyWalkAnimation from "../json/lottie.json";
+
+
 
 const LogoLoader = () => {
   return (
     <div id='loadercontainer'>
+        <Lottie animationData={groovyWalkAnimation} loop={true} />
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 366 487.9" style={{ enableBackground: 'new 0 0 366 487.9' }} className="logo-draw">
         <g>
             <polygon className="st0" points="144.4,119.1 157.4,109.8 140.7,109.8 135.7,94.3 130.1,109.8 113.4,109.8 126.4,119.1 121.4,134.7 
