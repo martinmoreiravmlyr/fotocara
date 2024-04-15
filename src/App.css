@@ -258,7 +258,7 @@ body{
 .card-bg3d {
   width: 500px;
   height: 550px;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 30px;

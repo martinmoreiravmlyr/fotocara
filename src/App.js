@@ -17,14 +17,16 @@ function App() {
   const [capturedImage, setCapturedImage] = useState(null);
   const [lastAction, setLastAction] = useState('');
 
-  // Función para deshabilitar el click derecho
+
   // useEffect(() => {
+  //   // Función para deshabilitar el click derecho
   //   const disableRightClick = (event) => event.preventDefault();
   //   // Agregar listener al montar
   //   document.addEventListener('contextmenu', disableRightClick);
   //   // Remover listener al desmontar
   //   return () => document.removeEventListener('contextmenu', disableRightClick);
   // }, []);
+
 
   const nextStep = () => {
     setLoading(true); // Muestra el loader al iniciar la transición
@@ -36,6 +38,8 @@ function App() {
           return 'step1';
         case 'step1':
           return 'step2';
+        case 'step2':
+          return 'step3';
         default:
           setLoading(false); // Asegúrate de ocultar el loader si vuelves al inicio
           return 'intro';
@@ -54,15 +58,16 @@ function App() {
         {loading && <LogoLoader />}
         <div>
           {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} setLoading={setLoading} />}
+          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} />}
           {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
 
+          
           {type === 'step1' && <div>
             <ImageShow setType={setType}/>
           </div>}
           {type === 'error' && 
             <div className="error">
-              <h1>Lo sentimos, algo salio mal.</h1>
+              <h1>Algo salio mal.</h1>
               <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
             </div>}
         </div>

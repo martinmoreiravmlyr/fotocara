@@ -82,6 +82,7 @@ function ImageShow({setType}) {
         <div id="presentala">
           <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
           
+          {/* Muestra la imagen base64 */}
           <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
