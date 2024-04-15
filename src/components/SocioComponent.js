@@ -4,7 +4,7 @@ import { useFormData } from './providers/FormContext';
 import Popup from '../components/Popup';
 
 
-function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction }) {
+function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, lastAction, setLoading }) {
   const [esSocio, setEsSocio] = useState('');
   const [numeroSocio, setNumeroSocio] = useState('');
   const [nombre, setNombre] = useState('');
@@ -125,6 +125,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);  
 
     // Compila todos los datos del formulario en un solo objeto
     const datosDelFormulario = {
@@ -137,7 +138,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
         edad,
         genero,
         imagen: displayImage,
-        lastAction, // o uploadedImage, dependiendo de cómo estés manejando las imágenes
+        lastAction,
         isIphone
     };
     try {
@@ -185,6 +186,8 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
           text: 'Hubo un problema al conectar con el servidor. Por favor, intenta nuevamente.',
       });
       setShowPopup(true);
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -192,7 +195,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     <div className='containersteps'>
       <div className='contenedorstep'>
         <h1>Este año la nueva del Manya la presentás vos.</h1>
-        <p className='poppins-light'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y conocé la nueva camiseta del Manya.</p>
+        <p className='poppins-light'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y probate la nueva camiseta del Manya.</p>
 
         <form className='formulario' onSubmit={handleSubmit}>
 
@@ -243,7 +246,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             <input type="email" placeholder="Mail" className="input-field" onChange={handleEmailChange} />
             <input type="number" placeholder="Edad" className="input-field" onChange={handleEdadChange} />
 
-
             <p className='poppins-light blanco'>La quiero presentar como</p>  
             <div className='genero'>
               
@@ -271,7 +273,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 <p>Jugadora</p>
               </div>
 
-              
             </div>
 
             <div className='contenedor-foto'>
