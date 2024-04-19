@@ -80,7 +80,8 @@ function ImageShow({setType}) {
 
       <div className="containersteps">
         <div id="presentala">
-          <h1>¡Felicitaciones {nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.</h1>
+          <h1>¡Felicitaciones {nombreUsuario}!</h1>
+          <h2>Ya podés presentar la nueva camiseta en tus redes.</h2>
           
           <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 

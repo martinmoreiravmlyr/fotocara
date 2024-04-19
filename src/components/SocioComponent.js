@@ -17,7 +17,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [uploadedImage, setUploadedImage] = useState(null);
 
   // Agregamos estados para las validaciones
-  const [esSocioValido, setEsSocioValido] = useState(true); // Suponiendo que inicialmente es válido
+  const [esSocioValido, setEsSocioValido] = useState(true);
   const [ciValido, setCiValido] = useState(true);
   const [emailValido, setEmailValido] = useState(true);
   const [edadValida, setEdadValida] = useState(true);
@@ -28,6 +28,12 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [popupContent, setPopupContent] = useState({ title: '', text: '' });
 
   const [isIphone, setIsIphone] = useState(false);
+
+  //Errores de validacion
+  const [ciError, setCiError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [edadError, setEdadError] = useState('');
+  const [numeroSocioError, setNumeroSocioError] = useState('');
 
 
   // Validación de campos individuales
@@ -59,25 +65,33 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const handleCiChange = (e) => {
     const ci = e.target.value;
     setCi(ci);
-    setCiValido(validarCi(ci));
+    const isValid = validarCi(ci);  
+    setCiValido(isValid);
+    setCiError(isValid ? '' : 'Cédula inválida. Debe tener 7 u 8 dígitos sin puntos ni guiones.');
   };
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
     setEmail(email);
-    setEmailValido(validarEmail(email));
+    const isValid = validarEmail(email);  
+    setEmailValido(isValid);
+    setEmailError(isValid ? '' : 'Correo electrónico inválido.');
   };
 
   const handleEdadChange = (e) => {
     const edad = e.target.value;
     setEdad(edad);
-    setEdadValida(validarEdad(edad));
+    const isValid = validarEdad(edad);  
+    setEdadValida(isValid);
+    setEdadError(isValid ? '' : 'Edad inválida. Debe ser un número entre 1 y 110.');
   };
 
   const handleNumeroSocioChange = (e) => {
     const numero = e.target.value;
     setNumeroSocio(numero);
-    setEsSocioValido(validarNumeroSocio(numero));
+    const isValid = validarNumeroSocio(numero);  
+    setEsSocioValido(isValid);
+    setNumeroSocioError(isValid ? '' : 'Número de socio inválido. Debe ser de hasta 6 dígitos.');
   };
 
   // Determina qué imagen mostrar basándose en las propiedades 'capturedImage' y 'uploadedImage'
@@ -190,10 +204,10 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 };
 
   return (
-    <div className='containersteps'>
+    <div className='containersteps' id={isIphone ? 'iphone-id' : 'default-id'}>
       <div className='contenedorstep'>
         <h1>Este año la nueva del Manya la presentás vos.</h1>
-        <p className='poppins-light'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y conocé la nueva camiseta del Manya.</p>
+        <p className='poppins-light text-ingresa'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y conocé la nueva camiseta del Manya.</p>
 
         <form className='formulario' onSubmit={handleSubmit}>
 
@@ -222,7 +236,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   checked={esSocio === 'no'}
                   onChange={(e) => setEsSocio(e.target.value)}
                   id="socio_no"
-                  defaultChecked
                 />
                 <label htmlFor="socio_no" className="checkmark"></label>
                 <p>No</p>
@@ -230,12 +243,15 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             </div>  
 
             {esSocio === 'si' && (
-              <input
-                type="number"
-                placeholder="Número de Socio"
-                className="input-field"
-                onChange={handleNumeroSocioChange}
-              />
+              <>
+                <input
+                  type="number"
+                  placeholder="Número de Socio"
+                  className="input-field"
+                  onChange={handleNumeroSocioChange}
+                />
+                {numeroSocioError && <div className="error-message">{numeroSocioError}</div>}
+              </>
             )}
 
           </div>
@@ -243,9 +259,15 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
           <div className='formchico'>
             <input type="text" placeholder="Nombre" className="input-field" onChange={(e) => setNombre(e.target.value)} />
             <input type="text" placeholder="Apellido" className="input-field" onChange={(e) => setApellido(e.target.value)} />
-            <input type="number" placeholder="C.I (Sin puntos ni guiones)" className="input-field" onChange={handleCiChange}  />
+
+            <input type="number" placeholder="Cédula de identidad" className="input-field" onChange={handleCiChange} />
+            {ciError && <div className="error-message">{ciError}</div>}
+            
             <input type="email" placeholder="Mail" className="input-field" onChange={handleEmailChange} />
+            {emailError && <div className="error-message">{emailError}</div>}
+            
             <input type="number" placeholder="Edad" className="input-field" onChange={handleEdadChange} />
+            {edadError && <div className="error-message">{edadError}</div>}
 
 
             <p className='poppins-light blanco'>La quiero presentar como</p>  
@@ -285,7 +307,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             </div>
 
             <div className='contenedor-subir-sacar'>          
-              <div>
+              <div className='contenedor-boton-upload'>
                 <input type="file" accept="image/*" id="fileInput" className="input-file" onChange={handleImageUpload} />
                 <label htmlFor="fileInput" className="label-file">
                   <span className="material-icons">cloud_upload</span>Subir foto
@@ -315,7 +337,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
               className={`next poppins-light ${!botonHabilitado ? 'disabled' : ''}`}
               disabled={!botonHabilitado}
             >
-              Probarme Camiseta
+              Probarme la camiseta
             </button>
           </div>
 

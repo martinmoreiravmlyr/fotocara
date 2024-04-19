@@ -10,13 +10,27 @@ function IntroComponent({ nextStep }) {
         <div className='sponsorscontainer'>
           <p>Sponsors</p>
           <div className='sponsors'>
-            <img src="/images/logos-cap/logos-cap-puma.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-antel.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-bbva.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-sarubi.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-nuñez.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-medica.png" alt="Escudo de Peñarol" />
-            <img src="/images/logos-cap/logos-cap-rexona.png" alt="Escudo de Peñarol" />
+            <a href="https://www.pumastore.com.uy/" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-puma.png" alt="Puma" />
+            </a>
+            <a href="https://www.antel.com.uy" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-antel.png" alt="Antel" />
+            </a>
+            <a href="https://www.bbva.com" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-bbva.png" alt="BBVA" />
+            </a>
+            <a href="https://sarubbi.com.uy/" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-sarubi.png" alt="Sarubbi" />
+            </a>
+            <a href="https://nunez.com.uy/" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-nuñez.png" alt="Nuñez" />
+            </a>
+            <a href="https://www.medicauruguaya.com.uy/" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-medica.png" alt="Medica Uruguaya" />
+            </a>
+            <a href="https://www.rexona.com/uy/" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logos-cap/logos-cap-rexona.png" alt="Rexona" />
+            </a>
           </div>
         </div>
       </div>
