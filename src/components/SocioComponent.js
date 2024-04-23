@@ -257,13 +257,13 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
           </div>
 
           <div className='formchico'>
-            <input type="text" placeholder="Nombre" className="input-field" onChange={(e) => setNombre(e.target.value)} />
-            <input type="text" placeholder="Apellido" className="input-field" onChange={(e) => setApellido(e.target.value)} />
+            <input type="text" name="nombre" autocomplete="name" placeholder="Nombre" className="input-field" onChange={(e) => setNombre(e.target.value)} />
+            <input type="text" name="apellido" autocomplete="family-name" placeholder="Apellido" className="input-field" onChange={(e) => setApellido(e.target.value)} />
 
-            <input type="number" placeholder="Cédula de identidad" className="input-field" onChange={handleCiChange} />
+            <input type="number" autocomplete="off" placeholder="Cédula de identidad" className="input-field" onChange={handleCiChange} />
             {ciError && <div className="error-message">{ciError}</div>}
             
-            <input type="email" placeholder="Mail" className="input-field" onChange={handleEmailChange} />
+            <input type="email" name="email" autocomplete="email" placeholder="Mail" className="input-field" onChange={handleEmailChange} />
             {emailError && <div className="error-message">{emailError}</div>}
             
             <input type="number" placeholder="Edad" className="input-field" onChange={handleEdadChange} />

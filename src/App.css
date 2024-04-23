@@ -586,6 +586,15 @@ input, select.input-field{
   border-bottom: 1px solid #f0ce01;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #f0ce01 !important; /* asegúrate de que el texto sea visible cambiando el color */
+    -webkit-box-shadow: 0 0 0px 1000px #000000 inset; /* cambia 'yellow' al color que desees */
+}
+
 .genero {
   display: flex;
   flex-direction: row;
