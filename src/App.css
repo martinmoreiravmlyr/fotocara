@@ -267,7 +267,7 @@ body{
   content: "";
   position: absolute;
   background-color: #000000;
-  inset: 4px;
+  inset: 3px;
   margin: 0px;
   border-radius: 20px;
 }
@@ -631,8 +631,8 @@ input:-webkit-autofill:active {
   white-space: nowrap;
   top: 0;
   left: 0px;
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   margin-right: 3px;
   background-color: #cacaca00;
   border: 1px solid #f9df34;
@@ -648,10 +648,10 @@ input:-webkit-autofill:active {
 .radio-container .checkmark:after {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 7px;
-  height: 7px;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #f9df34;
   display: none;
@@ -930,6 +930,10 @@ img.escudocap:hover{
 }
 
 @media screen and (max-width:440px) {
+  .error-message{
+    width: 240px;
+    margin-bottom: 0px;
+  }
   input, select.input-field {
     min-width: 240px !important;
     margin: 0 auto;
@@ -949,7 +953,8 @@ img.escudocap:hover{
     margin-top: 20px;
   }  
   input, select.input-field {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    margin-top: 15px;
   }  
   .containersteps {
     margin: 2vh 2vh 1vh 2vh;
