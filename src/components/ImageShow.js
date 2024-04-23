@@ -21,9 +21,8 @@ function ImageShow({setType}) {
   const shareOnX = () => {
     const text = encodeURIComponent("Este año la nueva del Manya la presento YO");
     const url = encodeURIComponent(window.location.href);
-    const hashtags = "LaNuevadePeñarol,Peñarol2024";
-    const via = "tuUsuarioDeTwitter";
-    const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`;
+    const hashtags = "LaNuevaDelManya,Peñarol2024";
+    const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
     window.open(shareUrl, '_blank');
     downloadImage();
   };
