@@ -977,7 +977,18 @@ header img:hover{
   }  
 }  
 
+@media screen and (max-width:412px) {
+  .card-bg3d {
+    top: 0px;
+    border-radius: 27px;
+  }
+}
+
 @media screen and (max-width:360px) {
+  .card-bg3d {
+    top: 0px;
+    border-radius: 27px;
+  }
   .containersteps {
     padding: 15% 10%;
   }
