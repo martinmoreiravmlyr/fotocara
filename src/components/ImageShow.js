@@ -52,7 +52,7 @@ function ImageShow({setType}) {
         // Crea un enlace y fuerza la descarga
         const link = document.createElement('a');
         link.href = blobUrl;
-        link.download = 'Camiseta_peñarol.jpeg'; // Especifica el nombre de archivo para la descarga
+        link.download = 'LaNuevaDelManya.png'; // Especifica el nombre de archivo para la descarga
         document.body.appendChild(link); // Necesario para que el enlace funcione en Firefox
         link.click(); // Simula un clic en el enlace para iniciar la descarga
   

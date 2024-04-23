@@ -915,7 +915,11 @@ header img:hover{
   }
 }
 
-@media screen and (max-width:428px) {
+@media screen and (max-width:440px) {
+  input, select.input-field {
+    min-width: 240px !important;
+    margin: 0 auto;
+  } 
   .botonesfinal{
     display: flex;
     flex-direction: column;
