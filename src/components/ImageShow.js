@@ -2,6 +2,9 @@ import { useState } from 'react';
 import Card3d from "./Card3d";
 import Popup from '../components/Popup';
 import { useFormData } from './providers/FormContext';
+import { TwitterShareButton, TwitterIcon, FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+
+
 
 
 function ImageShow({setType}) { 
@@ -10,6 +13,14 @@ function ImageShow({setType}) {
   const { formData } = useFormData();
   const nombreUsuario = formData.nombre;
   const processedImage64 = formData.processedImage64;
+
+  const shareUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // La URL a compartir
+  const shareTitle = `¡Felicitaciones ${nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.`; // Título del mensaje
+  const hashtags = ["LaNuevaDelManya", "Peñarol2024"]; // Hashtags para incluir en el tweet
+  const relatedAccounts = ["Peñarol"]; // Cuentas relacionadas para sugerir en Twitter
+  const viaAccount = "Peñarol"; // Cuenta que se menciona como la fuente en el tweet
+  const mediaUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // En caso de que puedas incluir una imagen directamente
+
 
   const shareOnFacebook = () => {
     const url = encodeURIComponent(window.location.href);
@@ -39,7 +50,7 @@ function ImageShow({setType}) {
   };
 
   const shareOnWhatsApp = () => {
-    const imageUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // Asegúrate de usar una URL accesible públicamente
+    const imageUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; 
     const message = encodeURIComponent(`¡Mira la nueva camiseta que presento! ${imageUrl}`);
     const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -87,46 +98,74 @@ function ImageShow({setType}) {
 
       <div className="containersteps">
         <div id="presentala">
-          <h1>¡Felicitaciones {nombreUsuario}!</h1>
-          <h2>Ya podés presentar la nueva camiseta en tus redes.</h2>
-          
-          <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
+            <h1>¡Felicitaciones {nombreUsuario}!</h1>
+            <h2>Ya podés presentar la nueva camiseta en tus redes.</h2>
+            
+            <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
-        <div className='botonesfinal'>
-          <button className='buttoncomprar buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
-        </div>
-       
-        <div className="botonerashare">
-          <div className="redessociales">
-            <div>
-              <p>Compartir</p>
+          <div className='botonesfinal'>
+            <button className='buttoncomprar buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
+          </div>
+        
+          <div className="botonerashare">
+            <div className="redessociales">
+              <div>
+                <p>Compartir</p>
+              </div>
+              <div>
+                <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
+                  <img src="/images/social_x.png" alt="Compartir en X" />
+                </button>
+                <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
+                  <img src="/images/social_i.png" alt="Compartir en Instagram" />
+                </button>
+                <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
+                  <img src="/images/social_f.png" alt="Compartir en Facebook" />
+                </button>
+                <button className="social-link-button" aria-label="Share on W" onClick={shareOnWhatsApp}>
+                  <img src="/images/social_w.png" alt="Compartir en Whatsapp" />
+                </button>
+                <TwitterShareButton
+                  url={shareUrl} // URL de la página o de la imagen
+                  title={shareTitle} // Título del tweet
+                  hashtags={hashtags} // Array de hashtags
+                  related={relatedAccounts} // Cuentas relacionadas
+                  via={viaAccount} // Cuenta de Twitter del usuario que envía el tweet
+                  media={mediaUrl} // URL de la imagen a compartir
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+
+                <FacebookShareButton
+                  url={shareUrl}
+                  quote={shareTitle}
+                  hashtag="#LaNuevaDelManya"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+
+
+                <WhatsappShareButton
+                  url={shareUrl}
+                  title={shareTitle}
+                  separator=":: "
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+
+              </div>
             </div>
-            <div>
-              <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
-                <img src="/images/social_x.png" alt="Compartir en X" />
-              </button>
-              <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
-                <img src="/images/social_i.png" alt="Compartir en Instagram" />
-              </button>
-              <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
-                <img src="/images/social_f.png" alt="Compartir en Facebook" />
-              </button>
-              <button className="social-link-button" aria-label="Share on W" onClick={shareOnWhatsApp}>
-                <img src="/images/social_w.png" alt="Compartir en Whatsapp" />
-              </button>
+            <div className="descargar">
+              <div>
+                <p>Descargar</p>
+              </div>
+              <div>
+                <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
+                  <img src="/images/descargar.png" alt="Descargar imagen" />
+                </button>
+              </div>
             </div>
           </div>
-          <div className="descargar">
-            <div>
-              <p>Descargar</p>
-            </div>
-            <div>
-              <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
-                <img src="/images/descargar.png" alt="Descargar imagen" />
-              </button>
-            </div>
-          </div>
-        </div>
       </div>  
   
     </div>
