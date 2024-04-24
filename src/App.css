@@ -504,6 +504,7 @@ button.buttonline:hover{
 .contenedor-subir-sacar{
   width: 100%;
   display: flex;
+  margin: 0% 0 10% 0;
 }
 
 span.material-icons{
@@ -717,6 +718,13 @@ p.blanco{
   text-align: center;
 }
 
+#containersossocio{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
 .botonerashare{
   display: flex;
   align-items: center;
@@ -751,7 +759,10 @@ p.blanco{
 }
 
 .contenedor-foto {
-  margin: 5% auto 0 auto;
+  margin: 0 auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .capturedImageMini {
@@ -797,6 +808,30 @@ img.escudocap:hover{
   animation: hart 1s ease-out infinite;
   cursor: pointer;
 }
+
+
+.buttoncomprar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttoncomprar a{
+  display: flex;
+  align-items: center;
+}
+
+button.buttoncomprar a::before{
+  content: "";
+  width: 20px;
+  margin: 0 5px;
+  background-image: url("../public/images/bag.png");
+  background-size: contain;
+  display: inline-table;
+}
+
+
+
 
 
 @font-face {
@@ -930,6 +965,12 @@ img.escudocap:hover{
 }
 
 @media screen and (max-width:440px) {
+  .label-file, button.buttonline{
+    font-size: 14px;
+  }  
+  .label-file {
+    width: 140px;
+  }  
   .error-message{
     width: 240px;
     margin-bottom: 0px;

@@ -206,12 +206,39 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   return (
     <div className='containersteps' id={isIphone ? 'iphone-id' : 'default-id'}>
       <div className='contenedorstep'>
-        <h1>Este año la nueva del Manya la presentás vos.</h1>
-        <p className='poppins-light text-ingresa'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y conocé la nueva camiseta del Manya.</p>
-
+        <p className='poppins-light text-ingresa'>Ingresá tus datos, sacá una foto de tu cara o subila desde tu equipo y presentá la nueva del Manya en tus redes.</p>
         <form className='formulario' onSubmit={handleSubmit}>
 
-          <div>
+        <div className='contenedor-foto'>
+            {displayImage && <img src={displayImage} alt="Captured or Uploaded" className='capturedImageMini'/>}
+            </div>
+
+            <div className='contenedor-subir-sacar'>          
+              <div className='contenedor-boton-upload'>
+                  <input type="file" accept="image/*" capture="user" id="fileInput" className="input-file" onChange={handleImageUpload} />
+                  <label htmlFor="fileInput" className="label-file">
+                  <span className="material-icons">cloud_upload</span>Subir foto
+                </label>
+              </div>
+
+              {showPopup && (
+                <Popup
+                  title={popupContent.title}
+                  text={popupContent.text}
+                  onClose={() => setShowPopup(false)}
+                />
+              )}
+
+              {!isIphone && (
+                <div>   
+                  <button type="button" onClick={toggleCamera} className="take-photo buttonline poppins-light">
+                    <span className="material-icons">photo_camera</span>Tomar foto
+                  </button>
+                </div>
+              )}
+            </div>
+
+          <div id='containersossocio'>
             <p className='poppins-light blanco'>¿Sos socio?</p> 
 
             <div className='genero'>
@@ -300,35 +327,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
               </div>
 
               
-            </div>
-
-            <div className='contenedor-foto'>
-            {displayImage && <img src={displayImage} alt="Captured or Uploaded" className='capturedImageMini'/>}
-            </div>
-
-            <div className='contenedor-subir-sacar'>          
-              <div className='contenedor-boton-upload'>
-                <input type="file" accept="image/*" id="fileInput" className="input-file" onChange={handleImageUpload} />
-                <label htmlFor="fileInput" className="label-file">
-                  <span className="material-icons">cloud_upload</span>Subir foto
-                </label>
-              </div>
-
-              {showPopup && (
-                <Popup
-                  title={popupContent.title}
-                  text={popupContent.text}
-                  onClose={() => setShowPopup(false)}
-                />
-              )}
-
-              {!isIphone && (
-                <div>   
-                  <button type="button" onClick={toggleCamera} className="take-photo buttonline poppins-light">
-                    <span className="material-icons">photo_camera</span>Tomar foto
-                  </button>
-                </div>
-              )}
             </div>
 
             <button 

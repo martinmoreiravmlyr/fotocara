@@ -85,7 +85,7 @@ function ImageShow({setType}) {
           <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
         <div className='botonesfinal'>
-          <button className='buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
+          <button className='buttoncomprar buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
         </div>
        
         <div className="botonerashare">
