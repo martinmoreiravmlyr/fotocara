@@ -106,6 +106,7 @@ h2 {
 
 .text-ingresa{
   max-width: 500px;
+  padding-bottom: 5%;
 }
 
 h1 {
@@ -821,18 +822,41 @@ img.escudocap:hover{
   align-items: center;
 }
 
+.reiniciar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 button.buttoncomprar a::before{
   content: "";
   width: 20px;
-  margin: 0 5px;
+  height: 20px;
+  margin: 0;
   background-image: url("../public/images/bag.png");
+  background-repeat: no-repeat;
   background-size: contain;
   display: inline-table;
 }
 
+button.buttoncomprar:hover a::before{
+  background-image: url("../public/images/bagyellow.png");
+}
 
+button.reiniciar::before{
+  content: "";
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  background-image: url("../public/images/refresh.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-table;
+}
 
-
+button.reiniciar:hover::before{
+  background-image: url("../public/images/refreshyellow.png");
+}
 
 @font-face {
   font-family: 'Acumin Variable Concept';
@@ -990,9 +1014,11 @@ button.buttoncomprar a::before{
   button.buttonnormal {
     margin: 10px;
   }
+
   .formulario{
     margin-top: 20px;
   }  
+
   input, select.input-field {
     margin-bottom: 5px;
     margin-top: 15px;

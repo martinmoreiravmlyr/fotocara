@@ -38,6 +38,14 @@ function ImageShow({setType}) {
     setShowPopup(true);
   };
 
+  const shareOnWhatsApp = () => {
+    const imageUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // Asegúrate de usar una URL accesible públicamente
+    const message = encodeURIComponent(`Mira esta imagen ${imageUrl}`);
+    const whatsappUrl = `whatsapp://send?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+
   const downloadImage = () => {
     // La URL completa de la imagen
     const imageUrl = `/api/static/imgs/combined/${processedImage64}`;
@@ -102,6 +110,9 @@ function ImageShow({setType}) {
               </button>
               <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
                 <img src="/images/social_f.png" alt="Compartir en Facebook" />
+              </button>
+              <button className="social-link-button" aria-label="Share on W" onClick={shareOnWhatsApp}>
+                <img src="/images/social_f.png" alt="Compartir en Whatsapp" />
               </button>
             </div>
           </div>
