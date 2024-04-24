@@ -40,8 +40,8 @@ function ImageShow({setType}) {
 
   const shareOnWhatsApp = () => {
     const imageUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // Asegúrate de usar una URL accesible públicamente
-    const message = encodeURIComponent(`Mira esta imagen ${imageUrl}`);
-    const whatsappUrl = `whatsapp://send?text=${message}`;
+    const message = encodeURIComponent(`¡Mira la nueva camiseta que presento! ${imageUrl}`);
+    const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -112,7 +112,7 @@ function ImageShow({setType}) {
                 <img src="/images/social_f.png" alt="Compartir en Facebook" />
               </button>
               <button className="social-link-button" aria-label="Share on W" onClick={shareOnWhatsApp}>
-                <img src="/images/social_f.png" alt="Compartir en Whatsapp" />
+                <img src="/images/social_w.png" alt="Compartir en Whatsapp" />
               </button>
             </div>
           </div>
