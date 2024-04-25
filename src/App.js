@@ -8,10 +8,11 @@ import SocioComponent from './components/SocioComponent';
 import HeaderComponent from './components/HeaderComponent';
 import { FormProvider } from './components/providers/FormContext';
 
+import PasswordLayer from './components/PasswordLayer';
 
 
 function App() {
-  const [type, setType] = useState('intro'); // Comienza con el componente de introducción
+  const [type, setType] = useState('password'); // Comienza con el componente de introducción
   const [showCamera, setShowCamera] = useState(false); // Nuevo estado para controlar la visibilidad de CameraComponent
   const [loading, setLoading] = useState(false); // Nuevo estado para controlar la visibilidad de LogoLoader
   const [capturedImage, setCapturedImage] = useState(null);
@@ -56,6 +57,7 @@ function App() {
         <HeaderComponent />
         {loading && <LogoLoader />}
         <div>
+          {type === 'password' && <PasswordLayer setType={setType} />}
           {type === 'intro' && <IntroComponent nextStep={nextStep} />}
           {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} setLoading={setLoading} />}
           {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
