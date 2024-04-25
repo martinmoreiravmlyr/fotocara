@@ -4,9 +4,6 @@ import Popup from '../components/Popup';
 import { useFormData } from './providers/FormContext';
 import { TwitterShareButton, TwitterIcon, FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
 
-
-
-
 function ImageShow({setType}) { 
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({ title: '', text: '' });
@@ -21,23 +18,6 @@ function ImageShow({setType}) {
   const viaAccount = "Peñarol"; // Cuenta que se menciona como la fuente en el tweet
   const mediaUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // En caso de que puedas incluir una imagen directamente
 
-
-  const shareOnFacebook = () => {
-    const url = encodeURIComponent(window.location.href);
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    window.open(shareUrl, '_blank');
-    downloadImage();
-  };
-
-  const shareOnX = () => {
-    const text = encodeURIComponent("Este año la nueva del Manya la presento YO");
-    const url = encodeURIComponent(window.location.href);
-    const hashtags = "LaNuevaDelManya,Peñarol2024";
-    const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
-    window.open(shareUrl, '_blank');
-    downloadImage();
-  };
-
   const shareOnInstagramGuide = () => {
     setPopupContent({
       title: 'Compartir en Instagram',
@@ -47,13 +27,6 @@ function ImageShow({setType}) {
       )
     });
     setShowPopup(true);
-  };
-
-  const shareOnWhatsApp = () => {
-    const imageUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; 
-    const message = encodeURIComponent(`¡Mira la nueva camiseta que presento! ${imageUrl}`);
-    const whatsappUrl = `https://wa.me/?text=${message}`;
-    window.open(whatsappUrl, '_blank');
   };
 
 
@@ -113,18 +86,7 @@ function ImageShow({setType}) {
                 <p>Compartir</p>
               </div>
               <div>
-                <button className="social-link-button" aria-label="Share on X" onClick={shareOnX}>
-                  <img src="/images/social_x.png" alt="Compartir en X" />
-                </button>
-                <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
-                  <img src="/images/social_i.png" alt="Compartir en Instagram" />
-                </button>
-                <button className="social-link-button" aria-label="Share on F" onClick={shareOnFacebook}>
-                  <img src="/images/social_f.png" alt="Compartir en Facebook" />
-                </button>
-                <button className="social-link-button" aria-label="Share on W" onClick={shareOnWhatsApp}>
-                  <img src="/images/social_w.png" alt="Compartir en Whatsapp" />
-                </button>
+                
                 <TwitterShareButton
                   url={shareUrl} // URL de la página o de la imagen
                   title={shareTitle} // Título del tweet
@@ -152,6 +114,10 @@ function ImageShow({setType}) {
                 >
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
+
+                <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
+                  <img src="/images/social_i.png" alt="Compartir en Instagram" />
+                </button>
 
               </div>
             </div>

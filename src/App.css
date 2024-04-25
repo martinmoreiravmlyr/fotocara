@@ -3,7 +3,7 @@ body{
 }
 
 .error-message {
-  color: #ac0000;
+  color: #000000;
   font-family: 'Myriad Pro Regular';
   font-size: 0.8rem;
   margin-top: 0px;
@@ -17,7 +17,7 @@ a{
 }
 
 button:hover a{
-  color: #f0ce00;
+  color: #ffcb00;
 }
 
 header{
@@ -45,9 +45,9 @@ button{
 }
 
 button.buttonnormal{
-  background-color: #f0ce00;
+  background-color: #ffcb00;
   color: #000000;
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   width: 200px;
   height: 45px;
   margin: 0 10px;
@@ -63,12 +63,12 @@ button.buttonnormal{
 }
 
 button.buttonnormal:hover{
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   background-color:#000000;
   cursor: pointer;
-  color:#f0ce00;
+  color:#ffcb00;
   top: -10px;
-  box-shadow: 0px 10px 25px #ffdb0069;  
+  box-shadow: 0px 10px 25px #00000069;
 }  
 
 .botonesfinal {
@@ -78,7 +78,7 @@ button.buttonnormal:hover{
 
 
 input{
-  color: #f0ce00;
+  color: #000000;
 }
 
 /* Para Chrome, Safari, Edge */
@@ -167,7 +167,7 @@ h1, h2{
 }
 
 input::placeholder, label {
-  color: #ffffff;
+  color: #00000042;
 }
 
 
@@ -213,7 +213,7 @@ input::placeholder, label {
   transform: translateX(-50%);
   z-index: 10;
   border-radius: 50%;
-  background-color: #f0ce00;
+  background-color: #ffcb00;
   color: rgb(0, 0, 0);
   border: none;
   cursor: pointer;
@@ -233,7 +233,7 @@ input::placeholder, label {
 } 
 
 body{
-  background-color: #f0ce00;
+  background-color: #ffcb00;
   background-image: url("../public/images/fondocap.jpg");
   background-size: cover;
 }
@@ -249,10 +249,10 @@ body{
   margin: 20vh auto;
   min-height: 60vh;
   height: auto;
-  background-color: #0000006e;
+  background-color: #ffcb0094;
   border-radius: 20px;
   margin: 10vh auto 20vh auto;
-  padding: 3%;
+  padding: 2%;
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -261,15 +261,15 @@ body{
   position: absolute;
   width: 1200px;
   height: 300px;
-  background-color: #f0ce00;
+  background-color: #000000;
   animation: rotate 8s linear infinite;
 }
 
 .containersteps::after{
   content: "";
   position: absolute;
-  background-color: #000000;
-  inset: 3px;
+  background-color: #ffcb00;
+  inset: 7px;
   margin: 0px;
   border-radius: 20px;
 }
@@ -298,7 +298,6 @@ body{
 }
 
 .card-wrap3d{
-  border: 3px solid rgb(240, 206, 0);
   border-radius: 30px;
 }
 
@@ -348,19 +347,19 @@ h1{
 }
 
 h1, h2{
-  color:#f0ce00;
+  color:#000000;
   text-align: center;
   animation: lights 5s 750ms linear infinite;
 }
 
 p{
-  color:#f0ce00;
+  color:#000000;
 }
 
 .popup-container button{
-  background-color: #f0ce00;
+  background-color: #000000;
   color:#000000;
-  border: 2px solid #f0ce00;
+  border: 2px solid #000000;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -375,18 +374,18 @@ p{
 }
 
 .popup-container button:hover{
-  border: 2px solid #f0ce00;
-  background-color:#000000;
+  border: 2px solid #000000;
+  background-color:#ffcb00;
   cursor: pointer;
-  color:#f0ce00;
+  color:#000000;
   top: -10px;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 button.continuar{
-  background-color: #f0ce00;
-  color: #000000;
-  border: 2px solid #f0ce00;
+  background-color: #000000;
+  color: #ffcb00;
+  border: 2px solid #000000;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -402,9 +401,9 @@ button.continuar{
 }
 
 button.reiniciar{
-  background-color: #f0ce00;
+  background-color: #ffcb00;
   color: #000000;
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -420,18 +419,18 @@ button.reiniciar{
 }
 
 button.reiniciar:hover, button.continuar:hover {
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   background-color:#000000;
   cursor: pointer;
-  color:#f0ce00;
+  color:#ffcb00;
   bottom: 7%;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 button.next{
-  background-color: #f0ce00;
-  color: #000000;
-  border: 2px solid #f0ce00;
+  background-color: #000000;
+  color: #ffcb00;
+  border: 2px solid #000000;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -453,18 +452,18 @@ button.next.poppins-light.disabled{
 }
 
 button.next:hover{
-  border: 2px solid #f0ce00;
-  background-color:#000000;
+  border: 2px solid #000000;
+  background-color:#ffcb00;
   cursor: pointer;
-  color:#f0ce00;
+  color:#000000;
   bottom: 7%;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 button.buttonline{
   background-color: #000000;
-  color: #f0ce00;
-  border: 2px solid #f0ce00;
+  color: #ffcb00;
+  border: 2px solid #ffcb00;
   width: 150px;
   height: 40px;
   border-radius: 50px;
@@ -482,12 +481,12 @@ button.buttonline{
 }
 
 button.buttonline:hover{
-  border: 2px solid #f0ce00;
-  background-color:#000000;
+  border: 2px solid #000000;
+  background-color: #ffcb00;
   cursor: pointer;
-  color:#f0ce00;
+  color: #000000;
   bottom: 7%;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 
@@ -525,8 +524,8 @@ span.material-icons{
 .label-file {
   display: inline-block;
   background-color: #000000;
-  color: #f0ce00;
-  border: 2px solid #f0ce00;
+  color: #ffcb00;
+  border: 2px solid #000000;
   width: 150px;
   max-height: 40px;
   line-height: 36px; /* Ajusta esto para centrar verticalmente el texto */
@@ -542,15 +541,15 @@ span.material-icons{
 }
 
 .label-file:hover {
-  background-color: #000000;
-  color: #f0ce00;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  background-color: #ffcb00;
+  color: #000000;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 button.next2{
-  background-color: #f0ce00;
+  background-color: #ffcb00;
   color: #000000;
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   width: 100px;
   height: 40px;
   border-radius: 50px;
@@ -565,17 +564,18 @@ button.next2{
 }
 
 button.next2:hover{
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   background-color:#000000;
   cursor: pointer;
-  color:#f0ce00;
+  color:#ffcb00;
   bottom: 7%;
-  box-shadow: 0px 10px 25px #ffdb0069;
+  box-shadow: 0px 10px 25px #00000069;
 }
 
 #enviardata{
   width: 100%;
   margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 input, select.input-field{
@@ -586,7 +586,7 @@ input, select.input-field{
   padding: 0px 10px;
   min-width: 300px !important;
   background-color: #cacaca00;
-  border-bottom: 1px solid #f0ce01;
+  border-bottom: 2px solid #000000;
 }
 
 input:-webkit-autofill,
@@ -594,8 +594,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #f0ce01 !important; /* asegúrate de que el texto sea visible cambiando el color */
-    -webkit-box-shadow: 0 0 0px 1000px #000000 inset; /* cambia 'yellow' al color que desees */
+    -webkit-text-fill-color: #000000 !important; /* asegúrate de que el texto sea visible cambiando el color */
+    -webkit-box-shadow: 0 0 0px 1000px #ffcb00 inset; /* cambia 'yellow' al color que desees */
 }
 
 .genero {
@@ -626,7 +626,7 @@ input:-webkit-autofill:active {
   cursor: pointer;
   height: 15px;
   min-width: 15px !important;
-  border: 1px solid #f9df34!important;
+  border: 1px solid #000000!important;
 }
 
 .radio-container .checkmark {
@@ -638,7 +638,7 @@ input:-webkit-autofill:active {
   width: 20px;
   margin-right: 3px;
   background-color: #cacaca00;
-  border: 1px solid #f9df34;
+  border: 2px solid #000000;
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
@@ -656,7 +656,7 @@ input:-webkit-autofill:active {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #f9df34;
+  background: #000000;
   display: none;
 }
 
@@ -674,11 +674,12 @@ header img{
 }
 
 p.blanco{
-  color: #ffffff!important;
+  color: #000000!important;
+  font-size: 1.1em;
 }
 
 .radio-container p{
-  color: #ffffff!important;
+  color: #000000!important;
 }
 
 /*---Componente Popup---*/
@@ -708,7 +709,7 @@ p.blanco{
 }
 
 .popup-container {
-  border: 2px solid #f0ce00;
+  border: 2px solid #ffcb00;
   background-color: #000000;
   padding: 40px 20px;
   display: flex;
@@ -749,6 +750,19 @@ p.blanco{
   width: 30px;
 }
 
+.react-share__ShareButton {
+  background-color: #ffcb00; /* Color de fondo del botón */
+  margin: 0 0 0 10px;
+}
+
+.react-share__ShareButton svg circle {
+  fill: #000000
+}
+
+.react-share__ShareButton svg path {
+  fill: #ffcb00; /* Color del icono */
+}
+
 .capturedImage{
   position: absolute;
   z-index: 99999;
@@ -770,7 +784,7 @@ p.blanco{
 .capturedImageMini {
   width: 50px;
   height: 50px;
-  border: 2px solid #f0ce00;
+  border: 2px solid #000000;
   border-radius: 50px;
   object-fit: cover;
 }
@@ -798,7 +812,7 @@ p.blanco{
 }
 
 .st0{
-  fill:#F0CE00;
+  fill:#ffcb00;
   animation: fillAnimation 2s ease-in-out infinite;
 }
 
@@ -816,6 +830,11 @@ img.escudocap:hover{
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #000000!important;
+}
+
+.buttoncomprar:hover {
+  border: 2px solid #ffcb00 !important;
 }
 
 .buttoncomprar a{
