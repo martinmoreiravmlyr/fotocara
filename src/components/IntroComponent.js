@@ -28,7 +28,7 @@ function IntroComponent({ nextStep }) {
             <a href="https://www.medicauruguaya.com.uy/" target="_blank" rel="noopener noreferrer">
               <img src="/images/logos-cap/logos-cap-medica.png" alt="Medica Uruguaya" />
             </a>
-            <a href="https://www.rexona.com/uy/" target="_blank" rel="noopener noreferrer">
+            <a id="rexonasponsor" href="https://www.rexona.com/uy/" target="_blank" rel="noopener noreferrer">
               <img src="/images/logos-cap/logos-cap-rexona.png" alt="Rexona" />
             </a>
           </div>

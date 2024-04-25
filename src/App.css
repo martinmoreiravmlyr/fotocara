@@ -170,7 +170,6 @@ input::placeholder, label {
   color: #0000006b;
 }
 
-
 .sponsorscontainer{
   margin: 10% auto 0 auto;
   display: flex;
@@ -202,9 +201,6 @@ input::placeholder, label {
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-
-
-
 
 .botonfoto{
   position: absolute;
@@ -832,6 +828,11 @@ img.escudocap:hover{
 .sponsors img:hover{
   animation: hart 1s ease-out infinite;
   cursor: pointer;
+}
+
+a#rexonasponsor img{
+  position: relative;
+  top: -16px;
 }
 
 button#enviardata:hover{
