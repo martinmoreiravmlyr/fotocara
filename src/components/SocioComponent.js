@@ -326,6 +326,19 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 <p>Jugadora</p>
               </div>
 
+              <div className="radio-container">
+                <input
+                  type="radio"
+                  name="genero"
+                  value="child"
+                  checked={genero === 'child'}
+                  onChange={(e) => setGenero(e.target.value)}
+                  id="child"
+                />
+                <label htmlFor="child" className="checkmark"></label>
+                <p>Niñ@</p>
+              </div>
+
               
             </div>
 
