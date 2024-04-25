@@ -167,7 +167,7 @@ h1, h2{
 }
 
 input::placeholder, label {
-  color: #00000042;
+  color: #0000006b;
 }
 
 
@@ -197,7 +197,6 @@ input::placeholder, label {
 }
 
 .sponsors img:hover{
-  opacity: 0.4;
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
@@ -283,7 +282,7 @@ body{
 
 .card-bg3d {
   width: 500px;
-  height: 550px;
+  height: 590px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -356,10 +355,14 @@ p{
   color:#000000;
 }
 
+.popup-container h1,.popup-container p{
+  color:#ffcb00;
+}
+
 .popup-container button{
-  background-color: #000000;
-  color:#000000;
   border: 2px solid #000000;
+  background-color:#ffcb00;
+  color:#000000;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -374,10 +377,11 @@ p{
 }
 
 .popup-container button:hover{
-  border: 2px solid #000000;
-  background-color:#ffcb00;
   cursor: pointer;
-  color:#000000;
+  background-color: #000000;
+  color: #000000;
+  border: 2px solid #ffcb00;
+  color: #ffcb00;
   top: -10px;
   box-shadow: 0px 10px 25px #00000069;
 }
@@ -825,21 +829,36 @@ img.escudocap:hover{
   cursor: pointer;
 }
 
+.sponsors img:hover{
+  animation: hart 1s ease-out infinite;
+  cursor: pointer;
+}
+
+button#enviardata:hover{
+  animation: hart 1s ease-out infinite;
+}
 
 .buttoncomprar{
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #000000!important;
+  border: 2px solid #000 !important;
+  background-color: #000000 !important;
 }
 
 .buttoncomprar:hover {
-  border: 2px solid #ffcb00 !important;
+  background-color: #fec900 !important;
+  border: 2px solid #000000 !important;
+}
+
+.buttoncomprar:hover a{
+  color:#000000!important;
 }
 
 .buttoncomprar a{
   display: flex;
   align-items: center;
+  color:#ffcb00;
 }
 
 .reiniciar{
@@ -853,14 +872,15 @@ button.buttoncomprar a::before{
   width: 20px;
   height: 20px;
   margin: 0;
-  background-image: url("../public/images/bag.png");
+  background-image: url("../public/images/bagyellow.png");
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-table;
 }
 
 button.buttoncomprar:hover a::before{
-  background-image: url("../public/images/bagyellow.png");
+  
+  background-image: url("../public/images/bag.png");
 }
 
 button.reiniciar::before{
