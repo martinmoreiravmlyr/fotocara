@@ -10,8 +10,9 @@ function ImageShow({setType}) {
   const { formData } = useFormData();
   const nombreUsuario = formData.nombre;
   const processedImage64 = formData.processedImage64;
+  const hashLink = formData.hashLink;
 
-  const shareUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // La URL a compartir
+  const shareUrl = `${hashLink}`; // La URL a compartir
   const shareTitle = `¡Felicitaciones ${nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.`; // Título del mensaje
   const hashtags = ["LaNuevaDelManya", "Peñarol2024"]; // Hashtags para incluir en el tweet
   const relatedAccounts = ["Peñarol"]; // Cuentas relacionadas para sugerir en Twitter
