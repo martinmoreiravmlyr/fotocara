@@ -12,16 +12,12 @@ function ImageShow({setType}) {
   const processedImage64 = formData.processedImage64;
   const hashLink = formData.hashLink;  // Asegúrate de que formData ya incluye hashLink
 
-  console.log(hashLink)
-
   const shareUrl = `${hashLink}`; // La URL a compartir
   const shareTitle = `¡Felicitaciones ${nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.`; // Título del mensaje
   const hashtags = ["LaNuevaDelManya", "Peñarol2024"]; // Hashtags para incluir en el tweet
   const relatedAccounts = ["Peñarol"]; // Cuentas relacionadas para sugerir en Twitter
   const viaAccount = "Peñarol"; // Cuenta que se menciona como la fuente en el tweet
   const mediaUrl = `${hashLink}`; // En caso de que puedas incluir una imagen directamente
-
-  
 
   const shareOnInstagramGuide = () => {
     setPopupContent({
@@ -82,8 +78,27 @@ function ImageShow({setType}) {
             <Card3d dataImage={`/api/static/imgs/combined/${processedImage64}`} alt="Foto Generada" className='card-bg3d' />
 
           <div className='botonesfinal'>
-            <button className='buttoncomprar buttonnormal'><a href="https://www.tiendapenarol.com.uy/" rel="noreferrer" target={'_blank'}>Comprala aquí</a></button>
+            <button className='buttoncomprar buttonnormal' onClick={() => {
+              // Verificar si gtag está disponible en el objeto window y ejecutar el seguimiento de eventos
+              if (window.gtag) {
+                window.gtag('event', 'click', {
+                  'event_category': 'Compra',
+                  'event_label': 'Comprala aquí'
+                });
+              } else {
+                console.error("Google Analytics gtag no está definido.");
+              }
+
+              // Abre el enlace en una nueva pestaña
+              window.open("https://www.tiendapenarol.com.uy/", "_blank", "noreferrer");
+            }}>
+              Comprala aquí
+            </button>
           </div>
+
+          
+
+
         
           <div className="botonerashare">
             <div className="redessociales">

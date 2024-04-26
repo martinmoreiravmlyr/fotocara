@@ -8,7 +8,6 @@ function IntroComponent({ nextStep }) {
         <button onClick={nextStep} className="next poppins-light" >Comenzar</button>
 
         <div className='sponsorscontainer'>
-          <p>Sponsors</p>
           <div className='sponsors'>
             <a href="https://www.pumastore.com.uy/" target="_blank" rel="noopener noreferrer">
               <img src="/images/logos-cap/logos-cap-puma.png" alt="Puma" />
