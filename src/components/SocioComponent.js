@@ -193,7 +193,9 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
       // Si la respuesta está OK, procedemos como de costumbre.
       const processedImage64 = responseData.processedImage64;
-      updateFormData({ ...datosDelFormulario, processedImage64 });
+      //updateFormData({ ...datosDelFormulario, processedImage64 });
+      updateFormData({ ...datosDelFormulario, processedImage64, hashLink: responseData.hashLink });
+
       nextStep(); // Avanza al siguiente paso, por ejemplo, mostrar la imagen procesada.
     } catch (error) {
         console.error('Error al enviar los datos del formulario:', error);

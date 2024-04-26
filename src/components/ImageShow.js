@@ -10,7 +10,7 @@ function ImageShow({setType}) {
   const { formData } = useFormData();
   const nombreUsuario = formData.nombre;
   const processedImage64 = formData.processedImage64;
-  const hashLink = formData.hashLink;
+  const hashLink = formData.hashLink;  // Asegúrate de que formData ya incluye hashLink
 
   console.log(hashLink)
 
