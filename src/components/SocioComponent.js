@@ -206,7 +206,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   return (
     <div className='containersteps' id={isIphone ? 'iphone-id' : 'default-id'}>
       <div className='contenedorstep'>
-        <p className='poppins-light text-ingresa'>Sacá una foto de tu cara o subila desde tu equipo, ingresá tus datos y presentá la nueva del Manya en tus redes.</p>
+        <p className='poppins-light text-ingresa'>Sacá una foto de tu cara o subila desde tu equipo, ingresá tus datos y transformate en un jugador de <strong>Peñarol</strong></p>
         <form className='formulario' onSubmit={handleSubmit}>
 
           <div className='contenedor-foto'>
@@ -336,7 +336,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   id="child"
                 />
                 <label htmlFor="child" className="checkmark"></label>
-                <p>Niñ@</p>
+                <p>Infantil</p>
               </div>
 
               

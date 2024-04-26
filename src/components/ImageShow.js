@@ -21,7 +21,7 @@ function ImageShow({setType}) {
   const shareOnInstagramGuide = () => {
     setPopupContent({
       title: 'Compartir en Instagram',
-      text: `Para compartir esta imagen en Instagram, primero descargala y luego subila a tu historia o feed.`,
+      text: `Para compartir esta imagen en Instagram, primero descargala y luego subila a tus historias o feed.`,
       actionButton: (
         <button onClick={downloadImage}>Descargar Imagen</button>
       )

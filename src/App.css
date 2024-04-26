@@ -7,7 +7,7 @@ body{
   z-index: 9999999;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #ffc720;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -354,8 +354,8 @@ img.face-recog{
 }
 
 h1{
-  font-size: 2.5em;
-  line-height: 1em;
+  font-size: 2em;
+  line-height: 1.1em;
 }
 
 h1, h2{
@@ -418,9 +418,9 @@ button.continuar{
 }
 
 button.reiniciar{
-  background-color: #ffcb00;
-  color: #000000;
-  border: 2px solid #ffcb00;
+  background-color: #000000;
+  color: #ffcb00;
+  border: 2px solid #000000;
   width: 200px;
   height: 45px;
   border-radius: 50px;
@@ -435,11 +435,20 @@ button.reiniciar{
   -o-transition: all 0.5s ease-out;
 }
 
-button.reiniciar:hover, button.continuar:hover {
+button.continuar:hover {
   border: 2px solid #ffcb00;
   background-color:#000000;
   cursor: pointer;
   color:#ffcb00;
+  bottom: 7%;
+  box-shadow: 0px 10px 25px #00000069;
+}
+
+button.reiniciar:hover{
+  border: 2px solid #000000;
+  background-color:#ffcb00;
+  cursor: pointer;
+  color:#000000;
   bottom: 7%;
   box-shadow: 0px 10px 25px #00000069;
 }
@@ -852,7 +861,7 @@ a#rexonasponsor img{
   top: -16px;
 }
 
-button#enviardata:hover{
+.radio-container .checkmark:hover {
   animation: hart 1s ease-out infinite;
 }
 
@@ -889,7 +898,7 @@ button.buttoncomprar a::before{
   content: "";
   width: 20px;
   height: 20px;
-  margin: 0;
+  margin: 0 5px;
   background-image: url("../public/images/bagyellow.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -905,15 +914,16 @@ button.reiniciar::before{
   content: "";
   width: 20px;
   height: 20px;
-  margin: 0;
-  background-image: url("../public/images/refresh.png");
+  margin: 0 5px;
+  background-image: url("../public/images/refreshyellow.png");
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-table;
 }
 
 button.reiniciar:hover::before{
-  background-image: url("../public/images/refreshyellow.png");
+  
+  background-image: url("../public/images/refresh.png");
 }
 
 @font-face {
@@ -1100,7 +1110,7 @@ button.reiniciar:hover::before{
     text-align: center!important;
   }
   h1 {
-    font-size: 2.1em;
+    font-size: 1.9em;
     line-height: 1.1em;
   }
   p.poppins-light, p{

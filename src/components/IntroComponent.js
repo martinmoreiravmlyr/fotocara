@@ -4,7 +4,7 @@ function IntroComponent({ nextStep }) {
   return (
     <div className='containersteps'>
       <div className='contenedorstep'>
-        <h1>Probate la nueva del Manya y presentala en tus redes</h1>
+        <h1>Transformate en un jugador de Peñarol y presentá la nueva del Manya en tus redes</h1>
         <button onClick={nextStep} className="next poppins-light" >Comenzar</button>
 
         <div className='sponsorscontainer'>
