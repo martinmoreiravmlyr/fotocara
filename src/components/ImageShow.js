@@ -114,6 +114,14 @@ function ImageShow({setType}) {
                   related={relatedAccounts} // Cuentas relacionadas
                   via={viaAccount} // Cuenta de Twitter del usuario que envía el tweet
                   media={mediaUrl} // URL de la imagen a compartir
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'click', {
+                        'event_category': 'Social Share',
+                        'event_label': 'Twitter'
+                      });
+                    }
+                  }}
                 >
                   <TwitterIcon size={32} round />
                 </TwitterShareButton>
@@ -122,6 +130,14 @@ function ImageShow({setType}) {
                   url={shareUrl}
                   quote={shareTitle}
                   hashtag="#LaNuevaDelManya"
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'click', {
+                        'event_category': 'Social Share',
+                        'event_label': 'Facebook'
+                      });
+                    }
+                  }}
                 >
                   <FacebookIcon size={32} round />
                 </FacebookShareButton>
@@ -131,11 +147,27 @@ function ImageShow({setType}) {
                   url={shareUrl}
                   title={shareTitle}
                   separator=":: "
+                  onClick={() => {
+                    if (window.gtag) {
+                      window.gtag('event', 'click', {
+                        'event_category': 'Social Share',
+                        'event_label': 'WhatsApp'
+                      });
+                    }
+                  }}
                 >
                   <WhatsappIcon size={32} round />
                 </WhatsappShareButton>
 
-                <button className="social-link-button" aria-label="Share on I" onClick={shareOnInstagramGuide}>
+                <button className="social-link-button" aria-label="Share on Instagram" onClick={() => {
+                  shareOnInstagramGuide();
+                  if (window.gtag) {
+                    window.gtag('event', 'click', {
+                      'event_category': 'Social Share',
+                      'event_label': 'Instagram'
+                    });
+                  }
+                }}>
                   <img src="/images/social_i.png" alt="Compartir en Instagram" />
                 </button>
 

@@ -972,21 +972,13 @@ a#rexonasponsor img{
   align-items: center;
   border: 2px solid #000 !important;
   background-color: #000000 !important;
+  color:#ffcb00!important;
 }
 
 .buttoncomprar:hover {
   background-color: #fec900 !important;
   border: 2px solid #000000 !important;
-}
-
-.buttoncomprar:hover a{
   color:#000000!important;
-}
-
-.buttoncomprar a{
-  display: flex;
-  align-items: center;
-  color:#ffcb00;
 }
 
 .reiniciar{
@@ -995,7 +987,7 @@ a#rexonasponsor img{
   align-items: center;
 }
 
-button.buttoncomprar a::before{
+button.buttoncomprar::before{
   content: "";
   width: 20px;
   height: 20px;
@@ -1006,7 +998,7 @@ button.buttoncomprar a::before{
   display: inline-table;
 }
 
-button.buttoncomprar:hover a::before{
+button.buttoncomprar:hover::before{
   background-image: url("../public/images/bag.png");
 }
 
