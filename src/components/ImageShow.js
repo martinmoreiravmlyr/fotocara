@@ -178,9 +178,21 @@ function ImageShow({setType}) {
                 <p>Descargar</p>
               </div>
               <div>
-                <button className="social-link-button" aria-label="Descargar" onClick={downloadImage}>
-                  <img src="/images/descargar.png" alt="Descargar imagen" />
-                </button>
+              <button className="social-link-button" aria-label="Descargar" onClick={() => {
+                // Verificar si gtag está disponible en el objeto window y ejecutar el seguimiento de eventos
+                if (window.gtag) {
+                  window.gtag('event', 'click', {
+                    'event_category': 'Descarga',
+                    'event_label': 'Descargar imagen'
+                  });
+                }
+
+                // Llama a la función original de descarga de imagen
+                downloadImage();
+              }}>
+                <img src="/images/descargar.png" alt="Descargar imagen" />
+              </button>
+
               </div>
             </div>
           </div>
