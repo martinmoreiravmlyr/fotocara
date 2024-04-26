@@ -6,9 +6,10 @@ import ImageShow from './components/ImageShow';
 import IntroComponent from './components/IntroComponent';
 import SocioComponent from './components/SocioComponent';
 import HeaderComponent from './components/HeaderComponent';
+import TermsAndConditions from './components/TermsAndConditions'; // Importa el nuevo componente de políticas de privacidad
 import { FormProvider } from './components/providers/FormContext';
-
 import PasswordLayer from './components/PasswordLayer';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 function App() {
@@ -52,26 +53,32 @@ function App() {
 
   return (
     <FormProvider>
-      <div>
-        <HeaderComponent />
-        {loading && <LogoLoader />}
+      <Router> {/* Agrega el componente Router */}
         <div>
-          {type === 'password' && <PasswordLayer setType={setType} />}
-          {type === 'intro' && <IntroComponent nextStep={nextStep} />}
-          {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} setLoading={setLoading} />}
-          {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
-
-          
-          {type === 'step1' && <div>
-            <ImageShow setType={setType}/>
-          </div>}
-          {type === 'error' && 
-            <div className="error">
-              <h1>Algo salio mal.</h1>
-              <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
-            </div>}
+          <HeaderComponent />
+          {loading && <LogoLoader />}
+          <div>
+          <Routes>
+            <Route path="/politicas-de-privacidad" element={<TermsAndConditions />} />
+            <Route path="/" element={
+              <div>
+                {type === 'password' && <PasswordLayer setType={setType} />}
+                {type === 'intro' && <IntroComponent nextStep={nextStep} />}
+                {type === 'socio' && <SocioComponent nextStep={nextStep} toggleCamera={toggleCamera} capturedImage={capturedImage} setLastAction={setLastAction} lastAction={lastAction} setLoading={setLoading} />}
+                {showCamera && <CameraComponent toggleCamera={toggleCamera} setCapturedImage={setCapturedImage} setLastAction={setLastAction} />}
+                {type === 'step1' && <div><ImageShow setType={setType}/></div>}
+                {type === 'error' && 
+                  <div className="error">
+                    <h1>Algo salio mal.</h1>
+                    <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
+                  </div>}
+                <Link to="/politicas-de-privacidad">Políticas de Privacidad</Link>
+              </div>
+            } />
+          </Routes>
+          </div>
         </div>
-      </div>
+      </Router>
     </FormProvider>
   );
 }

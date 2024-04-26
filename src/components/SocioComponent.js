@@ -21,6 +21,8 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [ciValido, setCiValido] = useState(true);
   const [emailValido, setEmailValido] = useState(true);
   const [edadValida, setEdadValida] = useState(true);
+  const [politicasAceptadas, setPoliticasAceptadas] = useState(false); // Nuevo estado para el checkbox
+
 
   const { updateFormData } = useFormData();
 
@@ -105,14 +107,18 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   useEffect(() => {
     const verificarCampos = () => {
       if (esSocio === 'si') {
-        return esSocioValido && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
+        return esSocioValido && politicasAceptadas && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
       } else {
-        return  emailValido && edadValida && nombre && apellido && email && edad && genero && displayImage;
+        return  politicasAceptadas && emailValido && edadValida && nombre && apellido && email && edad && genero && displayImage;
       }
     };
 
     setBotonHabilitado(verificarCampos());
-  }, [esSocio, esSocioValido, numeroSocio, ciValido, emailValido, edadValida, nombre, apellido, ci, email, edad, genero, displayImage]);
+  }, [esSocio, esSocioValido, politicasAceptadas, numeroSocio, ciValido, emailValido, edadValida, nombre, apellido, ci, email, edad, genero, displayImage]);
+
+  const handlePoliticasChange = (e) => {
+    setPoliticasAceptadas(e.target.checked);
+  };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -357,8 +363,19 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 <label htmlFor="child" className="checkmark"></label>
                 <p>Infantil</p>
               </div>
-
               
+            </div>
+
+            <div className='politicas-container'>
+              <input
+                type="checkbox"
+                id="politicas"
+                checked={politicasAceptadas}
+                onChange={handlePoliticasChange}
+              />
+              <label htmlFor="politicas" className="checkbox-label">
+                He leído y acepto las <a href="/politicas-de-privacidad">políticas de privacidad</a>
+              </label>
             </div>
 
             <button 
@@ -369,6 +386,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             >
               Probarme la camiseta
             </button>
+ 
           </div>
 
         </form>
