@@ -41,7 +41,7 @@ header{
   position: absolute;
   top: 0; 
   width: 100vw;
-  z-index: 1000;
+  z-index: 1;
 }
 
 p.light {
@@ -262,7 +262,7 @@ body{
   background-color: #ffcb0094;
   border-radius: 20px;
   margin: 10vh auto 20vh auto;
-  padding: 2%;
+  padding: 3% 2%;
   animation: fadeIn 0.5s ease-out;
 }
 
@@ -396,6 +396,16 @@ p{
   color: #ffcb00;
   top: -10px;
   box-shadow: 0px 10px 25px #00000069;
+}
+
+.popup-container button.closebutton {
+  position: fixed;
+  margin: 0;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  z-index: 9;
 }
 
 button.continuar{
@@ -820,6 +830,11 @@ p.blanco{
   flex-direction: column;
   align-items: center;
 }  
+
+#presentala h1{
+  font-size: 2.5em;
+}
+
 
 
 /*---Loader---*/

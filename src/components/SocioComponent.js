@@ -107,7 +107,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
       if (esSocio === 'si') {
         return esSocioValido && numeroSocio && ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
       } else {
-        return ciValido && emailValido && edadValida && nombre && apellido && ci && email && edad && genero && displayImage;
+        return  emailValido && edadValida && nombre && apellido && email && edad && genero && displayImage;
       }
     };
 
