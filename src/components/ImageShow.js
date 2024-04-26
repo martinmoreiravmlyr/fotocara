@@ -21,6 +21,8 @@ function ImageShow({setType}) {
   const viaAccount = "Peñarol"; // Cuenta que se menciona como la fuente en el tweet
   const mediaUrl = `${hashLink}`; // En caso de que puedas incluir una imagen directamente
 
+  
+
   const shareOnInstagramGuide = () => {
     setPopupContent({
       title: 'Compartir en Instagram',
