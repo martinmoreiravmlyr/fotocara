@@ -9,7 +9,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [numeroSocio, setNumeroSocio] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [ci, setCi] = useState(''); 
+  const [ci, setCi] = useState('60982898'); 
   const [email, setEmail] = useState('');
   const [edad, setEdad] = useState('');
   const [genero, setGenero] = useState('male');
@@ -161,7 +161,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
           },
           body: JSON.stringify(datosDelFormulario),
       });
-
+      
       const responseData = await response.json();
 
       if (!response.ok) {
@@ -187,7 +187,6 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
       // Si la respuesta está OK, procedemos como de costumbre.
       const processedImage64 = responseData.processedImage64;
-      console.log(processedImage64)
       updateFormData({ ...datosDelFormulario, processedImage64 });
       nextStep(); // Avanza al siguiente paso, por ejemplo, mostrar la imagen procesada.
     } catch (error) {
