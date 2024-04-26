@@ -52,6 +52,18 @@ function ImageShow({setType}) {
         // Limpieza
         document.body.removeChild(link);
         URL.revokeObjectURL(blobUrl); // Libera la memoria una vez que la descarga ha sido iniciada
+
+        // Mostrar popup después de descargar la imagen
+        setPopupContent({
+          title: '¡Participa en el sorteo!',
+          text: 'Comparte la imagen en Instagram con el hashtag #LaNuevaDelManya y entra en el sorteo de una camiseta oficial.',
+          actionButton: (
+            <button onClick={() => setShowPopup(false)} style={{ marginTop: '20px' }}>
+              Entendido
+            </button>
+          )
+        });
+        setShowPopup(true);
       })
       .catch(console.error); // Asegúrate de manejar cualquier error en el proceso
   };

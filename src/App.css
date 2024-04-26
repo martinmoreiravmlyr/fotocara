@@ -842,7 +842,7 @@ p.blanco{
 }
 
 .redessociales button img, .descargar button img{
-  width: 30px;
+  width: 32px;
 }
 
 .react-share__ShareButton {
@@ -1241,7 +1241,7 @@ button.reiniciar:hover::before{
     border-radius: 40px;
   }
   .redessociales button img, .descargar button img {
-    width: 30px;
+    width: 32px;
   }
   header img {
     top: 0vh;
