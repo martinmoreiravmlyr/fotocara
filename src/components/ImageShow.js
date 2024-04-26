@@ -12,12 +12,14 @@ function ImageShow({setType}) {
   const processedImage64 = formData.processedImage64;
   const hashLink = formData.hashLink;
 
+  console.log(hashLink)
+
   const shareUrl = `${hashLink}`; // La URL a compartir
   const shareTitle = `¡Felicitaciones ${nombreUsuario}! Ya podés presentar la nueva camiseta en tus redes.`; // Título del mensaje
   const hashtags = ["LaNuevaDelManya", "Peñarol2024"]; // Hashtags para incluir en el tweet
   const relatedAccounts = ["Peñarol"]; // Cuentas relacionadas para sugerir en Twitter
   const viaAccount = "Peñarol"; // Cuenta que se menciona como la fuente en el tweet
-  const mediaUrl = `https://lanuevadelmanya.com/api/static/imgs/combined/${processedImage64}`; // En caso de que puedas incluir una imagen directamente
+  const mediaUrl = `${hashLink}`; // En caso de que puedas incluir una imagen directamente
 
   const shareOnInstagramGuide = () => {
     setPopupContent({
