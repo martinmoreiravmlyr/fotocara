@@ -27,7 +27,6 @@ function App() {
   //   return () => document.removeEventListener('contextmenu', disableRightClick);
   // }, []);
 
-
   const nextStep = () => {
     setLoading(true); // Muestra el loader al iniciar la transición
     setType((currentType) => {
@@ -46,7 +45,7 @@ function App() {
       }
     });
     // Simula la carga de datos o una transición, luego oculta el loader
-    setTimeout(() => setLoading(false), 1000); // Este timeout es solo para simular una carga
+    setTimeout(() => setLoading(false), 5000); // Este timeout es solo para simular una carga
   };
 
   const toggleCamera = () => setShowCamera(!showCamera); // Función para mostrar/ocultar la cámara

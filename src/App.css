@@ -234,7 +234,6 @@ input::placeholder, label {
   justify-content: center;
   bottom: 10vh;
   align-items: center;
-  /*animation: pulsate 2s infinite ease-in-out;*/
 }  
 
 .foto-generada{
@@ -825,7 +824,7 @@ p.blanco{
 
 /*---Loader---*/
 #loadercontainer{
-  background-color: #000000eb;
+  background-color: #000000f7;
   width: 100vw;
   height: 100%;
   position: fixed;
@@ -835,7 +834,34 @@ p.blanco{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+
+#loadercontainer svg{
+  display: block;
+  width: 25%!important;
+  height: 25%!important;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#loading-text p{
+  color: #fbf50a;
+  margin: 20px 0px;
+  font-size: 1.5em;
+  text-align: center;
+  max-width: 500px;
+  font-style: italic;
+  line-height: 1.4em;
+}
+
+#loading-text span{
+  font-size: 2em;
+  font-style: italic;
+  position: relative;
+  top: 10px;
+}
+
 
 .st0{
   fill:#ffcb00;
@@ -906,7 +932,6 @@ button.buttoncomprar a::before{
 }
 
 button.buttoncomprar:hover a::before{
-  
   background-image: url("../public/images/bag.png");
 }
 
@@ -922,9 +947,15 @@ button.reiniciar::before{
 }
 
 button.reiniciar:hover::before{
-  
   background-image: url("../public/images/refresh.png");
 }
+
+
+.fade-in{
+  animation: fadeInAnimation 0.5s ease-in-out;
+}
+
+
 
 @font-face {
   font-family: 'Acumin Variable Concept';
@@ -953,6 +984,15 @@ button.reiniciar:hover::before{
   }
   100% {
     transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes fadeInAnimation {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
   }
 }
 
@@ -1017,6 +1057,13 @@ button.reiniciar:hover::before{
 
 
 @media screen and (max-width:834px) {
+  #loadercontainer svg{
+    display: block;
+    width: 50%!important;
+    height: 50%!important;
+    margin: 0 auto;
+    text-align: center;
+  }
   .botonerashare {
     justify-content: space-between;
   } 
@@ -1057,6 +1104,9 @@ button.reiniciar:hover::before{
 }
 
 @media screen and (max-width:440px) {
+  #loading-text p{
+    padding: 30px;
+  } 
   .label-file, button.buttonline{
     font-size: 14px;
   }  

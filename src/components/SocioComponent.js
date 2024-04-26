@@ -9,7 +9,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [numeroSocio, setNumeroSocio] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [ci, setCi] = useState('');
+  const [ci, setCi] = useState(''); 
   const [email, setEmail] = useState('');
   const [edad, setEdad] = useState('');
   const [genero, setGenero] = useState('male');
@@ -190,18 +190,28 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
       console.log(processedImage64)
       updateFormData({ ...datosDelFormulario, processedImage64 });
       nextStep(); // Avanza al siguiente paso, por ejemplo, mostrar la imagen procesada.
-  } catch (error) {
-      console.error('Error al enviar los datos del formulario:', error);
-      // Aquí puedes manejar errores de red, por ejemplo.
-      setPopupContent({
-          title: 'Error de Red',
-          text: 'Hubo un problema al conectar con el servidor. Por favor, intenta nuevamente.',
-      });
-      setShowPopup(true);
-  } finally {
-    setLoading(false);
-  }
-};
+    } catch (error) {
+        console.error('Error al enviar los datos del formulario:', error);
+        // Aquí puedes manejar errores de red, por ejemplo.
+        setPopupContent({
+            title: 'Error de Red',
+            text: 'Hubo un problema al conectar con el servidor. Por favor, intenta nuevamente.',
+        });
+        setShowPopup(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEsSocioChange = (e) => {
+    const value = e.target.value;
+    setEsSocio(value);
+    if (value === 'no') {
+      setCi('60982898');
+    }else{
+      setCi('');
+    }
+  };
 
   return (
     <div className='containersteps' id={isIphone ? 'iphone-id' : 'default-id'}>
@@ -248,7 +258,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   name="esSocio"
                   value="si"
                   checked={esSocio === 'si'}
-                  onChange={(e) => setEsSocio(e.target.value)}
+                  onChange={handleEsSocioChange}
                   id="socio_si"
                 />
                 <label htmlFor="socio_si" className="checkmark"></label>
@@ -261,7 +271,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                   name="esSocio"
                   value="no"
                   checked={esSocio === 'no'}
-                  onChange={(e) => setEsSocio(e.target.value)}
+                  onChange={handleEsSocioChange}
                   id="socio_no"
                 />
                 <label htmlFor="socio_no" className="checkmark"></label>
@@ -287,8 +297,18 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
             <input type="text" name="nombre" autocomplete="name" placeholder="Nombre" className="input-field" onChange={(e) => setNombre(e.target.value)} />
             <input type="text" name="apellido" autocomplete="family-name" placeholder="Apellido" className="input-field" onChange={(e) => setApellido(e.target.value)} />
 
-            <input type="number" autocomplete="off" placeholder="Cédula de identidad" className="input-field" onChange={handleCiChange} />
-            {ciError && <div className="error-message">{ciError}</div>}
+            {esSocio === 'si' && ( // Mostrar el campo de la cédula de identidad solo si es socio
+              <>
+                <input
+                  type="number"
+                  placeholder="Cédula de identidad"
+                  className="input-field"
+                  value={ci} // Establece el valor predeterminado
+                  onChange={handleCiChange}
+                />
+                {ciError && <div className="error-message">{ciError}</div>}
+              </>
+            )}
             
             <input type="email" name="email" autocomplete="email" placeholder="Mail" className="input-field" onChange={handleEmailChange} />
             {emailError && <div className="error-message">{emailError}</div>}
