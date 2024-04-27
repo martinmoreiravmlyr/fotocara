@@ -40,7 +40,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
 
   // Validación de campos individuales
   const validarTipoDeArchivo = (nombreArchivo) => {
-    const extensionesPermitidas = /\.(jpg|jpeg|png|gif|heif|webp)$/i;
+    const extensionesPermitidas = /\.(jpg|jpeg|png|gif|heif|heic|webp)$/i;
     return extensionesPermitidas.test(nombreArchivo);
   };
   
