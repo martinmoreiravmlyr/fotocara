@@ -332,6 +332,10 @@ body{
   animation: fadeIn 0.5s ease-out;
 }
 
+.terms-and-conditions p{
+  text-align: left;
+}
+
 .containersteps::before{
   content: "";
   position: absolute;
