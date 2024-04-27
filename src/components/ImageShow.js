@@ -5,8 +5,14 @@ import { useFormData } from './providers/FormContext';
 import { TwitterShareButton, TwitterIcon, FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
 
 function ImageShow({setType}) { 
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupContent, setPopupContent] = useState({ title: '', text: '' });
+  const [showPopup, setShowPopup] = useState(true); // Configura esto a true para que el popup se muestre inmediatamente
+  const [popupContent, setPopupContent] = useState({
+    title: '¡Participá de sorteos por la nueva del Manya!',
+    text: '¡Subí tu foto a tu perfil de Instagram o Twitter, seguí la cuenta de Puma Uruguay y participá de sorteos por camisetas!',
+    actionButton: (
+      <button onClick={() => setShowPopup(false)}>Aceptar</button> // Este botón ahora cierra el popup
+    )
+  });
   const { formData } = useFormData();
   const nombreUsuario = formData.nombre;
   const processedImage64 = formData.processedImage64;
@@ -53,17 +59,6 @@ function ImageShow({setType}) {
         document.body.removeChild(link);
         URL.revokeObjectURL(blobUrl); // Libera la memoria una vez que la descarga ha sido iniciada
 
-        // Mostrar popup después de descargar la imagen
-        setPopupContent({
-          title: '¡Participa en el sorteo!',
-          text: 'Comparte la imagen en Instagram con el hashtag #LaNuevaDelManya y entra en el sorteo de una camiseta oficial.',
-          actionButton: (
-            <button onClick={() => setShowPopup(false)} style={{ marginTop: '20px' }}>
-              Entendido
-            </button>
-          )
-        });
-        setShowPopup(true);
       })
       .catch(console.error); // Asegúrate de manejar cualquier error en el proceso
   };
@@ -72,13 +67,13 @@ function ImageShow({setType}) {
   return (
     <>
     
-    {showPopup && (
+      {showPopup && (
         <Popup
           title={popupContent.title}
           text={popupContent.text}
           onClose={() => setShowPopup(false)}
         >
-          <button onClick={downloadImage} style={{marginTop: '20px'}}>Descargar Imagen</button>
+          {popupContent.actionButton}
         </Popup>
       )}
 
@@ -185,6 +180,7 @@ function ImageShow({setType}) {
 
               </div>
             </div>
+
             <div className="descargar">
               <div>
                 <p>Descargar</p>

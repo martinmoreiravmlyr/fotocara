@@ -51,7 +51,12 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
       toggleCamera();
       stopCamera();
     }, 500);
-};
+  };
+
+  const handleClose = () => {
+    toggleCamera(); // This can be used to toggle the visibility of the camera UI
+    stopCamera();   // Ensure to stop the camera
+  };
   
   
   return (
@@ -59,9 +64,14 @@ const CameraComponent = ({ toggleCamera, setCapturedImage, setLastAction }) => {
       <div style={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'black', zIndex: 1}}>
         <video ref={videoRef} style={{width: '100%', height: '100%', objectFit: 'cover'}} autoPlay></video>
         <img src="images/person.png" alt="Face Outline" className='face-recog' />
-        <button onClick={capturePhoto} className="botonfoto poppins-light">
-          <span className="material-icons">photo_camera</span>
-        </button>
+        <div id='buttoncameracontainer'>
+          <button onClick={handleClose} className="botonclosecamera poppins-light">
+            <span className="material-icons">close</span>
+          </button>
+          <button onClick={capturePhoto} className="botonfoto poppins-light">
+            <span className="material-icons">photo_camera</span>
+          </button>
+        </div>
       </div>
     </div>
   );

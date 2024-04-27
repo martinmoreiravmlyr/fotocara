@@ -21,7 +21,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   const [ciValido, setCiValido] = useState(true);
   const [emailValido, setEmailValido] = useState(true);
   const [edadValida, setEdadValida] = useState(true);
-  const [politicasAceptadas, setPoliticasAceptadas] = useState(false); // Nuevo estado para el checkbox
+  const [politicasAceptadas, setPoliticasAceptadas] = useState(false); 
 
 
   const { updateFormData } = useFormData();
@@ -55,7 +55,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
   };
 
   const validarEdad = (edad) => {
-    return edad > 0 && edad <= 110;
+    return edad > 1 && edad <= 120;
   };
 
   const validarNumeroSocio = (numero) => {
@@ -85,7 +85,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
     setEdad(edad);
     const isValid = validarEdad(edad);  
     setEdadValida(isValid);
-    setEdadError(isValid ? '' : 'Edad inválida. Debe ser un número entre 1 y 110.');
+    setEdadError(isValid ? '' : 'Agrega una edad válida.');
   };
 
   const handleNumeroSocioChange = (e) => {
@@ -376,7 +376,7 @@ function SocioComponent({ nextStep, toggleCamera, capturedImage, setLastAction, 
                 onChange={handlePoliticasChange}
               />
               <label htmlFor="politicas" className="checkbox-label">
-                He leído y acepto las <a href="/politicas-de-privacidad">políticas de privacidad</a>
+                He leído y acepto las <a href="/bases-y-condiciones">bases y condiciones</a>
               </label>
             </div>
 

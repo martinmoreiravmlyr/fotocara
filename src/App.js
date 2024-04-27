@@ -6,7 +6,7 @@ import ImageShow from './components/ImageShow';
 import IntroComponent from './components/IntroComponent';
 import SocioComponent from './components/SocioComponent';
 import HeaderComponent from './components/HeaderComponent';
-import TermsAndConditions from './components/TermsAndConditions'; // Importa el nuevo componente de políticas de privacidad
+import BasesyCondiciones from './components/BasesyCondiciones'; 
 import { FormProvider } from './components/providers/FormContext';
 import PasswordLayer from './components/PasswordLayer';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
@@ -59,7 +59,7 @@ function App() {
           {loading && <LogoLoader />}
           <div>
           <Routes>
-            <Route path="/politicas-de-privacidad" element={<TermsAndConditions />} />
+            <Route path="/bases-y-condiciones" element={<BasesyCondiciones />} />
             <Route path="/" element={
               <div>
                 {type === 'password' && <PasswordLayer setType={setType} />}
@@ -72,7 +72,9 @@ function App() {
                     <h1>Algo salio mal.</h1>
                     <button onClick={() => setType('intro')} className="next poppins-light">Reiniciar</button>
                   </div>}
-                <Link to="/politicas-de-privacidad">Políticas de Privacidad</Link>
+                <div className='menubases'>
+                  <Link to="/bases-y-condiciones">Bases y Condiciones</Link>  
+                </div>  
               </div>
             } />
           </Routes>

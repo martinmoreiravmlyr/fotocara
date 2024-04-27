@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function TermsAndConditions() {
+function BasesyCondiciones() {
   const navigate = useNavigate();
 
   return (
@@ -26,4 +26,4 @@ function TermsAndConditions() {
   );
 }
 
-export default TermsAndConditions;
+export default BasesyCondiciones;
