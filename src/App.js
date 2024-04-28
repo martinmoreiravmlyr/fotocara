@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import CameraComponent from './components/CameraComponent';
 import LogoLoader from './components/LogoLoader';
@@ -13,20 +13,18 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 function App() {
-  const [type, setType] = useState('password'); // Comienza con el componente de introducción
+  const [type, setType] = useState('intro'); // Comienza con el componente de introducción
   const [showCamera, setShowCamera] = useState(false); // Nuevo estado para controlar la visibilidad de CameraComponent
   const [loading, setLoading] = useState(false); // Nuevo estado para controlar la visibilidad de LogoLoader
   const [capturedImage, setCapturedImage] = useState(null);
   const [lastAction, setLastAction] = useState('');
 
   // Función para deshabilitar el click derecho
-  // useEffect(() => {
-  //   const disableRightClick = (event) => event.preventDefault();
-  //   // Agregar listener al montar
-  //   document.addEventListener('contextmenu', disableRightClick);
-  //   // Remover listener al desmontar
-  //   return () => document.removeEventListener('contextmenu', disableRightClick);
-  // }, []);
+   useEffect(() => {
+     const disableRightClick = (event) => event.preventDefault();
+     document.addEventListener('contextmenu', disableRightClick);
+     return () => document.removeEventListener('contextmenu', disableRightClick);
+   }, []);
 
   const nextStep = () => {
     setLoading(true); // Muestra el loader al iniciar la transición
